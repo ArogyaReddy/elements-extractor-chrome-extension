@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Elements Extractor Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005a8b;
+        }
+        input[type="text"], input[type="email"] {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            width: 200px;
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .form-section {
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .link-group a {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            color: #007cba;
+            text-decoration: none;
+        }
+        .link-group a:hover {
+            text-decoration: underline;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 3px;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elements Extractor Test Page</h1>
+    
+    <div class="status">
+        <strong>✅ Extension Test Status:</strong> Ready for testing
+        <br><strong>Instructions:</strong> 
+        <ol>
+            <li>Install the Elements Extractor extension</li>
+            <li>Click the extension icon in the browser toolbar</li>
+            <li>Click "Extract Elements" button</li>
+            <li>Verify that elements from this page are detected and listed</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Links Section</h2>
+        <div class="link-group">
+            <a href="#home" id="home-link">Home</a>
+            <a href="#about" id="about-link">About</a>
+            <a href="#contact" id="contact-link">Contact</a>
+            <a href="https://github.com" id="github-link" target="_blank">GitHub</a>
+            <a href="mailto:test@example.com" id="email-link">Email Us</a>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔘 Buttons Section</h2>
+        <button id="primary-btn" type="button">Primary Button</button>
+        <button id="secondary-btn" type="button" disabled>Disabled Button</button>
+        <button id="submit-btn" type="submit">Submit Button</button>
+        <button id="reset-btn" type="reset">Reset Button</button>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Form Inputs Section</h2>
+        <div class="form-section">
+            <form id="test-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="3" cols="30" placeholder="Enter description"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>☑️ Checkboxes & Radios Section</h2>
+        <div class="checkbox-group">
+            <h3>Interests:</h3>
+            <label><input type="checkbox" id="tech-cb" name="interests" value="technology"> Technology</label><br>
+            <label><input type="checkbox" id="sports-cb" name="interests" value="sports"> Sports</label><br>
+            <label><input type="checkbox" id="music-cb" name="interests" value="music"> Music</label><br>
+        </div>
+        
+        <div class="checkbox-group">
+            <h3>Preferred Contact Method:</h3>
+            <label><input type="radio" id="email-radio" name="contact" value="email"> Email</label><br>
+            <label><input type="radio" id="phone-radio" name="contact" value="phone"> Phone</label><br>
+            <label><input type="radio" id="sms-radio" name="contact" value="sms"> SMS</label><br>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 Select & Lists Section</h2>
+        <div>
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="de">Germany</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="cities">Cities (Multiple):</label>
+            <select id="cities" name="cities" multiple size="4">
+                <option value="nyc">New York</option>
+                <option value="la">Los Angeles</option>
+                <option value="chicago">Chicago</option>
+                <option value="miami">Miami</option>
+            </select>
+        </div>
+        
+        <ul id="feature-list">
+            <li>Element Detection</li>
+            <li>CSS Selector Generation</li>
+            <li>XPath Generation</li>
+            <li>Interactive Inspection</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🖼️ Images Section</h2>
+        <img id="test-image" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwN2NiYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VGVzdDwvdGV4dD4KICA8L3N2Zz4K" alt="Test Image" width="100" height="100">
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 Custom Elements Section</h2>
+        <div class="custom-element" id="custom-widget" data-testid="widget-123" role="button" tabindex="0">
+            Custom Widget Element
+        </div>
+        <div class="interactive-area" onclick="alert('Clicked!')" style="cursor: pointer; padding: 10px; background: #f0f0f0; border: 1px solid #ccc;">
+            Clickable Div
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity for testing
+        document.getElementById('primary-btn').addEventListener('click', function() {
+            alert('Primary button clicked!');
+        });
+
+        document.getElementById('custom-widget').addEventListener('click', function() {
+            alert('Custom widget clicked!');
+        });
+
+        console.log('Test page loaded successfully!');
+        console.log('Elements available for extraction:', {
+            links: document.querySelectorAll('a').length,
+            buttons: document.querySelectorAll('button').length,
+            inputs: document.querySelectorAll('input').length,
+            selects: document.querySelectorAll('select').length,
+            images: document.querySelectorAll('img').length
+        });
+    </script>
+</body>
+</html>
