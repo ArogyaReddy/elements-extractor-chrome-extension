@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element AI Extractor - Complete Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <span class="nav-logo">🤖</span>
+            <span class="nav-title">Element AI Extractor Guide</span>
+        </div>
+        <div class="nav-links">
+            <a href="#overview" class="nav-link active">Overview</a>
+            <a href="getting-started.html" class="nav-link">Getting Started</a>
+            <a href="architecture.html" class="nav-link">Architecture</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="api-reference.html" class="nav-link">API Reference</a>
+            <a href="examples.html" class="nav-link">Examples</a>
+            <a href="troubleshooting.html" class="nav-link">Troubleshooting</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-icon">🤖</span>
+                    Element AI Extractor
+                    <span class="hero-subtitle">Complete Development Guide</span>
+                </h1>
+                <p class="hero-description">
+                    A comprehensive browser extension for extracting, analyzing, and locating web elements with AI-powered intelligence.
+                    Perfect for automation testing, web scraping, and UI analysis.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Element Types</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Locator Strategies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Export Formats</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Shadow DOM Support</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="overview" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Project Overview</h2>
+                <p class="section-description">
+                    Understanding the Element AI Extractor ecosystem and its capabilities
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Smart Element Detection</h3>
+                    <p class="feature-description">
+                        Automatically identifies and categorizes web elements using intelligent algorithms.
+                        Supports 15+ element types including buttons, inputs, links, and custom components.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Interactive elements prioritization</li>
+                        <li>Shadow DOM traversal</li>
+                        <li>ARIA attributes recognition</li>
+                        <li>Custom element detection</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Advanced Locator Generation</h3>
+                    <p class="feature-description">
+                        Generates robust, reliable locators using multiple strategies.
+                        Ranks locators by stability and uniqueness for optimal automation testing.
+                    </p>
+                    <ul class="feature-list">
+                        <li>ID-based locators (highest priority)</li>
+                        <li>Data attribute locators</li>
+                        <li>ARIA accessibility locators</li>
+                        <li>CSS selector generation</li>
+                        <li>XPath generation</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="feature-title">Real-time Element Inspector</h3>
+                    <p class="feature-description">
+                        Interactive element inspection mode with live highlighting and detailed analysis.
+                        Perfect for debugging and understanding element structure.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Click-to-inspect functionality</li>
+                        <li>Visual element highlighting</li>
+                        <li>Live locator preview</li>
+                        <li>Element property analysis</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Multiple Export Formats</h3>
+                    <p class="feature-description">
+                        Export extracted data in various formats for different use cases.
+                        Seamless integration with testing frameworks and automation tools.
+                    </p>
+                    <ul class="feature-list">
+                        <li>CSV for spreadsheet analysis</li>
+                        <li>JSON for API integration</li>
+                        <li>Excel for business reporting</li>
+                        <li>Interactive table view</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="architecture-overview">
+            <div class="section-header">
+                <h2 class="section-title">Architecture Overview</h2>
+                <p class="section-description">High-level system architecture and component interaction</p>
+            </div>
+
+            <div class="architecture-diagram">
+                <div class="arch-component popup-component">
+                    <div class="component-icon">🖥️</div>
+                    <h3>Popup Interface</h3>
+                    <p>Main user interface for configuration and results display</p>
+                    <div class="component-files">
+                        <span class="file-tag">popup.html</span>
+                        <span class="file-tag">popup.js</span>
+                        <span class="file-tag">popup.css</span>
+                    </div>
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-component background-component">
+                    <div class="component-icon">⚙️</div>
+                    <h3>Background Service</h3>
+                    <p>Extension lifecycle management and script injection</p>
+                    <div class="component-files">
+                        <span class="file-tag">background.js</span>
+                        <span class="file-tag">manifest.json</span>
+                    </div>
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-component content-component">
+                    <div class="component-icon">🌐</div>
+                    <h3>Content Script</h3>
+                    <p>DOM analysis and element inspection engine</p>
+                    <div class="component-files">
+                        <span class="file-tag">contentScript.js</span>
+                    </div>
+                </div>
+
+                <div class="arch-arrow">→</div>
+
+                <div class="arch-component webpage-component">
+                    <div class="component-icon">📄</div>
+                    <h3>Target Webpage</h3>
+                    <p>The webpage being analyzed and processed</p>
+                    <div class="component-files">
+                        <span class="file-tag">DOM Elements</span>
+                        <span class="file-tag">Shadow DOM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-start">
+            <div class="section-header">
+                <h2 class="section-title">Quick Start Guide</h2>
+                <p class="section-description">Get up and running with Element AI Extractor in minutes</p>
+            </div>
+
+            <div class="quick-start-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Install Extension</h3>
+                        <p>Load the extension in Chrome Developer Mode</p>
+                        <code>chrome://extensions/ → Load unpacked</code>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Navigate to Target Page</h3>
+                        <p>Open any webpage you want to analyze</p>
+                        <code>example.com</code>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Open Extension</h3>
+                        <p>Click the extension icon or use Ctrl+Shift+E</p>
+                        <code>🤖 Element AI Extractor</code>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Extract Elements</h3>
+                        <p>Configure filters and click Extract Elements</p>
+                        <code>🚀 Extract Elements</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="navigation-section">
+            <div class="section-header">
+                <h2 class="section-title">Guide Navigation</h2>
+                <p class="section-description">Explore detailed documentation for every aspect of the project</p>
+            </div>
+
+            <div class="nav-grid">
+                <a href="getting-started.html" class="nav-card">
+                    <div class="nav-card-icon">🚀</div>
+                    <h3>Getting Started</h3>
+                    <p>Installation, setup, and basic usage instructions</p>
+                    <ul class="nav-card-topics">
+                        <li>Installation Process</li>
+                        <li>Initial Configuration</li>
+                        <li>First Element Extraction</li>
+                        <li>Basic UI Navigation</li>
+                    </ul>
+                </a>
+
+                <a href="architecture.html" class="nav-card">
+                    <div class="nav-card-icon">🏗️</div>
+                    <h3>Architecture</h3>
+                    <p>Technical architecture, component design, and data flow</p>
+                    <ul class="nav-card-topics">
+                        <li>Extension Structure</li>
+                        <li>Component Communication</li>
+                        <li>Data Flow Patterns</li>
+                        <li>Security Considerations</li>
+                    </ul>
+                </a>
+
+                <a href="features.html" class="nav-card">
+                    <div class="nav-card-icon">⭐</div>
+                    <h3>Features</h3>
+                    <p>Complete feature documentation with examples and use cases</p>
+                    <ul class="nav-card-topics">
+                        <li>Element Detection</li>
+                        <li>Locator Generation</li>
+                        <li>Export Functionality</li>
+                        <li>Inspector Mode</li>
+                    </ul>
+                </a>
+
+                <a href="api-reference.html" class="nav-card">
+                    <div class="nav-card-icon">📚</div>
+                    <h3>API Reference</h3>
+                    <p>Complete function documentation and code examples</p>
+                    <ul class="nav-card-topics">
+                        <li>Core Functions</li>
+                        <li>Helper Utilities</li>
+                        <li>Event Handlers</li>
+                        <li>Extension APIs</li>
+                    </ul>
+                </a>
+
+                <a href="examples.html" class="nav-card">
+                    <div class="nav-card-icon">💡</div>
+                    <h3>Examples</h3>
+                    <p>Real-world examples, test cases, and implementation patterns</p>
+                    <ul class="nav-card-topics">
+                        <li>Basic Usage Examples</li>
+                        <li>Advanced Scenarios</li>
+                        <li>Integration Examples</li>
+                        <li>Best Practices</li>
+                    </ul>
+                </a>
+
+                <a href="troubleshooting.html" class="nav-card">
+                    <div class="nav-card-icon">🔧</div>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues, debugging tips, and performance optimization</p>
+                    <ul class="nav-card-topics">
+                        <li>Common Issues</li>
+                        <li>Debugging Techniques</li>
+                        <li>Performance Tips</li>
+                        <li>Browser Compatibility</li>
+                    </ul>
+                </a>
+            </div>
+        </section>
+
+        <section class="project-stats">
+            <div class="section-header">
+                <h2 class="section-title">Project Statistics</h2>
+                <p class="section-description">Current project status and development metrics</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-group">
+                    <h3>Core Files</h3>
+                    <div class="stat-items">
+                        <div class="stat-item">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">Main Files</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">~2000</span>
+                            <span class="stat-label">Lines of Code</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">100%</span>
+                            <span class="stat-label">Test Coverage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-group">
+                    <h3>Features</h3>
+                    <div class="stat-items">
+                        <div class="stat-item">
+                            <span class="stat-value">15+</span>
+                            <span class="stat-label">Element Types</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">Locator Types</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Export Formats</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-group">
+                    <h3>Compatibility</h3>
+                    <div class="stat-items">
+                        <div class="stat-item">
+                            <span class="stat-value">Chrome</span>
+                            <span class="stat-label">Primary Browser</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">Manifest V3</span>
+                            <span class="stat-label">Extension Version</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">All Sites</span>
+                            <span class="stat-label">Compatibility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Guide Section -->
+        <section class="visual-guide">
+            <div class="section-header">
+                <h2 class="section-title">Visual Guide Overview</h2>
+                <p class="section-description">Interactive diagrams and flowcharts to understand the system</p>
+            </div>
+
+            <div class="visual-grid">
+                <div class="visual-card">
+                    <div class="visual-image">
+                        <img src="assets/images/features-overview.svg" alt="Features Overview" loading="lazy">
+                    </div>
+                    <h3>Features Overview</h3>
+                    <p>Complete feature set visualization with core capabilities and integrations</p>
+                </div>
+
+                <div class="visual-card">
+                    <div class="visual-image">
+                        <img src="assets/images/element-detection-flow.svg" alt="Element Detection Flow" loading="lazy">
+                    </div>
+                    <h3>Detection Process Flow</h3>
+                    <p>Step-by-step breakdown of how elements are scanned, analyzed, and processed</p>
+                </div>
+
+                <div class="visual-card">
+                    <div class="visual-image">
+                        <img src="assets/images/api-mindmap.svg" alt="API Mind Map" loading="lazy">
+                    </div>
+                    <h3>API Reference Map</h3>
+                    <p>Interactive mind map of all available functions and their relationships</p>
+                </div>
+
+                <div class="visual-card">
+                    <div class="visual-image">
+                        <img src="assets/images/troubleshooting-flowchart.svg" alt="Troubleshooting Guide" loading="lazy">
+                    </div>
+                    <h3>Troubleshooting Guide</h3>
+                    <p>Comprehensive flowchart for diagnosing and resolving common issues</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Element AI Extractor</h4>
+                <p>Advanced web element extraction and analysis tool</p>
+            </div>
+            <div class="footer-section">
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="getting-started.html">Getting Started</a></li>
+                    <li><a href="api-reference.html">API Reference</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Element AI Extractor Guide. Built with ❤️ for developers.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/search-index.js"></script>
+    <script src="assets/js/guide.js"></script>
+    <script src="assets/js/prism.js"></script>
+</body>
+</html>

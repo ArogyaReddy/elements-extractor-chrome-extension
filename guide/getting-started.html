@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Element AI Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <span class="nav-logo">🤖</span>
+            <span class="nav-title">Element AI Extractor Guide</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Overview</a>
+            <a href="getting-started.html" class="nav-link active">Getting Started</a>
+            <a href="architecture.html" class="nav-link">Architecture</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="api-reference.html" class="nav-link">API Reference</a>
+            <a href="examples.html" class="nav-link">Examples</a>
+            <a href="troubleshooting.html" class="nav-link">Troubleshooting</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div class="page-header-content">
+                <h1 class="page-title">
+                    <span class="page-icon">🚀</span>
+                    Getting Started
+                </h1>
+                <p class="page-description">
+                    Complete installation and setup guide for Element AI Extractor
+                </p>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Prerequisites</h2>
+                <p class="section-description">What you need before installation</p>
+            </div>
+
+            <div class="prerequisite-grid">
+                <div class="prerequisite-card">
+                    <div class="prerequisite-icon">🌐</div>
+                    <h3>Chrome Browser</h3>
+                    <p>Chrome 88+ or any Chromium-based browser (Edge, Brave, Opera)</p>
+                    <div class="version-info">
+                        <span class="version-badge">Minimum: Chrome 88</span>
+                        <span class="version-badge">Recommended: Latest</span>
+                    </div>
+                </div>
+
+                <div class="prerequisite-card">
+                    <div class="prerequisite-icon">🔧</div>
+                    <h3>Developer Mode</h3>
+                    <p>Enable developer mode in Chrome extensions to load unpacked extensions</p>
+                    <div class="version-info">
+                        <span class="version-badge">Required for testing</span>
+                    </div>
+                </div>
+
+                <div class="prerequisite-card">
+                    <div class="prerequisite-icon">📁</div>
+                    <h3>Extension Files</h3>
+                    <p>Download or clone the Element AI Extractor source code</p>
+                    <div class="version-info">
+                        <span class="version-badge">Latest: v1.2.3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Installation Steps</h2>
+                <p class="section-description">Follow these steps to install the extension</p>
+            </div>
+
+            <div class="installation-steps">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>Enable Developer Mode</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>First, enable developer mode in Chrome to allow loading unpacked extensions.</p>
+                        <div class="step-instructions">
+                            <ol>
+                                <li>Open Chrome and navigate to <code>chrome://extensions/</code></li>
+                                <li>Toggle on "Developer mode" in the top right corner</li>
+                                <li>You should see new buttons appear: "Load unpacked", "Pack extension", "Update"</li>
+                            </ol>
+                        </div>
+                        <div class="step-visual">
+                            <img src="assets/images/developer-mode.png" alt="Enable Developer Mode" class="step-image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>Download Extension Files</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Get the latest version of Element AI Extractor source code.</p>
+                        <div class="step-instructions">
+                            <ol>
+                                <li>Download the extension ZIP file or clone the repository</li>
+                                <li>Extract the files to a folder on your computer</li>
+                                <li>Ensure you have all required files in the <code>elementsExtractor</code> folder</li>
+                            </ol>
+                        </div>
+                        <div class="file-structure">
+                            <h4>Required Files:</h4>
+                            <pre><code class="language-text">elementsExtractor/
+├── manifest.json
+├── popup.html
+├── popup.css
+├── popup.js
+├── background.js
+├── contentScript.js
+└── assets/
+    └── icons/
+        ├── icon16.png
+        ├── icon32.png
+        ├── icon48.png
+        └── icon128.png</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>Load the Extension</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Load the extension into Chrome using the "Load unpacked" button.</p>
+                        <div class="step-instructions">
+                            <ol>
+                                <li>Click "Load unpacked" button in the extensions page</li>
+                                <li>Navigate to and select the <code>elementsExtractor</code> folder</li>
+                                <li>Click "Select Folder" to load the extension</li>
+                                <li>The extension should appear in your extensions list</li>
+                            </ol>
+                        </div>
+                        <div class="success-indicator">
+                            <span class="success-icon">✅</span>
+                            <span>Extension loaded successfully!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h3>Pin the Extension</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Pin the extension to your toolbar for easy access.</p>
+                        <div class="step-instructions">
+                            <ol>
+                                <li>Click the extensions icon (puzzle piece) in Chrome toolbar</li>
+                                <li>Find "Element AI Extractor" in the list</li>
+                                <li>Click the pin icon next to it</li>
+                                <li>The extension icon should now appear in your toolbar</li>
+                            </ol>
+                        </div>
+                        <div class="tip-box">
+                            <span class="tip-icon">💡</span>
+                            <div class="tip-content">
+                                <strong>Tip:</strong> You can also use the keyboard shortcut <kbd>Ctrl+Shift+E</kbd> to open the extension.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">First Use</h2>
+                <p class="section-description">Test the extension with your first element extraction</p>
+            </div>
+
+            <div class="first-use-guide">
+                <div class="use-case-card">
+                    <h3>🎯 Basic Element Extraction</h3>
+                    <p>Extract all interactive elements from a webpage</p>
+                    <div class="use-case-steps">
+                        <ol>
+                            <li>Navigate to any webpage (e.g., <code>https://example.com</code>)</li>
+                            <li>Click the Element AI Extractor icon in your toolbar</li>
+                            <li>Keep default settings (Links, Buttons, Inputs selected)</li>
+                            <li>Click "🚀 Extract Elements"</li>
+                            <li>View the results in the popup table</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>🔬 Element Inspector</h3>
+                    <p>Inspect individual elements with detailed analysis</p>
+                    <div class="use-case-steps">
+                        <ol>
+                            <li>Open the extension popup</li>
+                            <li>Click "🔬 Inspect Element"</li>
+                            <li>Click on any element on the webpage</li>
+                            <li>View detailed locator information</li>
+                            <li>Copy locators to clipboard as needed</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <h3>📊 Export Data</h3>
+                    <p>Export extracted elements in various formats</p>
+                    <div class="use-case-steps">
+                        <ol>
+                            <li>Extract elements from a webpage</li>
+                            <li>Select export format (CSV, JSON, Excel, Table)</li>
+                            <li>Click "🚀 Extract Elements"</li>
+                            <li>File will be automatically downloaded</li>
+                            <li>Open file in your preferred application</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Configuration Options</h2>
+                <p class="section-description">Customize the extension behavior for your needs</p>
+            </div>
+
+            <div class="config-grid">
+                <div class="config-card">
+                    <h3>Element Type Filters</h3>
+                    <p>Choose which types of elements to extract</p>
+                    <div class="config-options">
+                        <div class="option-group">
+                            <h4>Interactive Elements</h4>
+                            <ul>
+                                <li><span class="option-name">Links</span> - All anchor tags and clickable elements</li>
+                                <li><span class="option-name">Buttons</span> - Button elements and submit inputs</li>
+                                <li><span class="option-name">Inputs</span> - Form inputs, selects, textareas</li>
+                            </ul>
+                        </div>
+                        <div class="option-group">
+                            <h4>Specific Types</h4>
+                            <ul>
+                                <li><span class="option-name">Textboxes</span> - Text input fields only</li>
+                                <li><span class="option-name">Checkboxes</span> - Checkbox inputs</li>
+                                <li><span class="option-name">Radios</span> - Radio button inputs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-card">
+                    <h3>Visibility Filters</h3>
+                    <p>Control which elements are included based on visibility</p>
+                    <div class="config-options">
+                        <div class="toggle-option">
+                            <span class="toggle-label">Visible Only</span>
+                            <span class="toggle-description">Only extract elements that are currently visible</span>
+                        </div>
+                        <div class="toggle-option">
+                            <span class="toggle-label">Hidden Only</span>
+                            <span class="toggle-description">Only extract hidden elements (display:none, etc.)</span>
+                        </div>
+                        <div class="toggle-option">
+                            <span class="toggle-label">Shadow DOM</span>
+                            <span class="toggle-description">Include elements inside Shadow DOM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-card">
+                    <h3>Export Settings</h3>
+                    <p>Choose how to export and view extracted data</p>
+                    <div class="config-options">
+                        <div class="format-option">
+                            <span class="format-name">Table</span>
+                            <span class="format-description">Interactive table view in popup</span>
+                        </div>
+                        <div class="format-option">
+                            <span class="format-name">CSV</span>
+                            <span class="format-description">Comma-separated values for spreadsheets</span>
+                        </div>
+                        <div class="format-option">
+                            <span class="format-name">JSON</span>
+                            <span class="format-description">Structured data for programming</span>
+                        </div>
+                        <div class="format-option">
+                            <span class="format-name">Excel</span>
+                            <span class="format-description">Microsoft Excel compatible format</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Verification</h2>
+                <p class="section-description">Verify your installation is working correctly</p>
+            </div>
+
+            <div class="verification-checklist">
+                <div class="checklist-item">
+                    <div class="checkbox">✅</div>
+                    <div class="checklist-content">
+                        <h4>Extension Loads Without Errors</h4>
+                        <p>Extension appears in chrome://extensions/ without error messages</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox">✅</div>
+                    <div class="checklist-content">
+                        <h4>Popup Opens Successfully</h4>
+                        <p>Clicking the extension icon opens the popup interface</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox">✅</div>
+                    <div class="checklist-content">
+                        <h4>Element Extraction Works</h4>
+                        <p>Can extract elements from a test webpage</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox">✅</div>
+                    <div class="checklist-content">
+                        <h4>Inspector Mode Functions</h4>
+                        <p>Can inspect individual elements and see locator details</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox">✅</div>
+                    <div class="checklist-content">
+                        <h4>Export Features Work</h4>
+                        <p>Can export data in different formats (CSV, JSON, etc.)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Next Steps</h2>
+                <p class="section-description">Continue learning about Element AI Extractor</p>
+            </div>
+
+            <div class="next-steps-grid">
+                <a href="features.html" class="next-step-card">
+                    <div class="next-step-icon">⭐</div>
+                    <h3>Explore Features</h3>
+                    <p>Learn about all the powerful features available in Element AI Extractor</p>
+                    <div class="next-step-cta">Learn More →</div>
+                </a>
+
+                <a href="architecture.html" class="next-step-card">
+                    <div class="next-step-icon">🏗️</div>
+                    <h3>Understand Architecture</h3>
+                    <p>Dive deep into the technical architecture and component design</p>
+                    <div class="next-step-cta">Explore →</div>
+                </a>
+
+                <a href="examples.html" class="next-step-card">
+                    <div class="next-step-icon">💡</div>
+                    <h3>View Examples</h3>
+                    <p>See real-world examples and best practices for using the extension</p>
+                    <div class="next-step-cta">See Examples →</div>
+                </a>
+
+                <a href="api-reference.html" class="next-step-card">
+                    <div class="next-step-icon">📚</div>
+                    <h3>API Reference</h3>
+                    <p>Detailed documentation of all functions and APIs</p>
+                    <div class="next-step-cta">Reference →</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Element AI Extractor</h4>
+                <p>Advanced web element extraction and analysis tool</p>
+            </div>
+            <div class="footer-section">
+                <h4>Documentation</h4>
+                <ul>
+                    <li><a href="getting-started.html">Getting Started</a></li>
+                    <li><a href="api-reference.html">API Reference</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Element AI Extractor Guide. Built with ❤️ for developers.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/guide.js"></script>
+    <script src="assets/js/prism.js"></script>
+</body>
+</html>

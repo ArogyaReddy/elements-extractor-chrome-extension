@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Elements Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🔍 Elements Extractor</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="api-reference.html" class="active">API Reference</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>📚 API Reference</h1>
+            <p>Complete documentation of all Elements Extractor functions, methods, and interfaces</p>
+        </header>
+
+        <!-- Quick Navigation -->
+        <section class="content-section">
+            <h2>🧭 Quick Navigation</h2>
+            <div class="api-nav-grid">
+                <a href="#core-functions" class="api-nav-item">
+                    <h3>🔍 Core Functions</h3>
+                    <p>Main extraction and analysis functions</p>
+                </a>
+                <a href="#element-analysis" class="api-nav-item">
+                    <h3>📊 Element Analysis</h3>
+                    <p>Element inspection and metadata functions</p>
+                </a>
+                <a href="#selector-generation" class="api-nav-item">
+                    <h3>🎯 Selector Generation</h3>
+                    <p>CSS and XPath selector creation</p>
+                </a>
+                <a href="#utility-functions" class="api-nav-item">
+                    <h3>🛠️ Utility Functions</h3>
+                    <p>Helper and utility functions</p>
+                </a>
+                <a href="#ui-functions" class="api-nav-item">
+                    <h3>🖥️ UI Functions</h3>
+                    <p>Popup interface and interaction functions</p>
+                </a>
+                <a href="#data-structures" class="api-nav-item">
+                    <h3>📋 Data Structures</h3>
+                    <p>Object schemas and type definitions</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Core Functions -->
+        <section class="content-section" id="core-functions">
+            <h2>🔍 Core Functions</h2>
+            
+            <div class="api-function">
+                <h3><code>extractAllElements()</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Core Function</span>
+                </div>
+                <p>Main function that scans the entire DOM and extracts all relevant elements.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function extractAllElements(): Array&lt;ElementData&gt;</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Returns</h4>
+                    <ul>
+                        <li><code>Array&lt;ElementData&gt;</code> - Array of analyzed element objects</li>
+                    </ul>
+                    
+                    <h4>Description</h4>
+                    <p>Traverses the DOM tree, identifies interactive and significant elements, analyzes each element for metadata and selectors, and returns a structured array of element data.</p>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Extract all elements from current page
+const elements = extractAllElements();
+console.log(`Found ${elements.length} elements`);
+
+// Process results
+elements.forEach(element => {
+    console.log(`${element.tagName}: ${element.selector}`);
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>shouldExtractElement(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Filter Function</span>
+                </div>
+                <p>Determines whether an element should be included in extraction results.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function shouldExtractElement(element: HTMLElement): boolean</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Parameters</h4>
+                    <ul>
+                        <li><code>element</code> (HTMLElement) - DOM element to evaluate</li>
+                    </ul>
+                    
+                    <h4>Returns</h4>
+                    <ul>
+                        <li><code>boolean</code> - True if element should be extracted</li>
+                    </ul>
+                    
+                    <h4>Filter Criteria</h4>
+                    <ul>
+                        <li>Element is visible (has dimensions)</li>
+                        <li>Element is interactive or has content</li>
+                        <li>Element is not a script or style tag</li>
+                        <li>Element meets minimum size requirements</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const button = document.querySelector('#submit-btn');
+if (shouldExtractElement(button)) {
+    console.log('Button will be extracted');
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>analyzeElement(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Analysis Function</span>
+                </div>
+                <p>Performs comprehensive analysis of a DOM element and returns structured data.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function analyzeElement(element: HTMLElement): ElementData</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Parameters</h4>
+                    <ul>
+                        <li><code>element</code> (HTMLElement) - DOM element to analyze</li>
+                    </ul>
+                    
+                    <h4>Returns</h4>
+                    <ul>
+                        <li><code>ElementData</code> - Complete element analysis object</li>
+                    </ul>
+                    
+                    <h4>Analysis Includes</h4>
+                    <ul>
+                        <li>Basic properties (tag, id, classes)</li>
+                        <li>Content extraction (text, value, attributes)</li>
+                        <li>Position and dimensions</li>
+                        <li>CSS and XPath selectors</li>
+                        <li>Visibility and interaction state</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const input = document.querySelector('#email');
+const analysis = analyzeElement(input);
+
+console.log(analysis);
+// Output: {
+//   tagName: 'INPUT',
+//   id: 'email',
+//   selector: '#email',
+//   textContent: '',
+//   value: 'user@example.com',
+//   ...
+// }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Element Analysis Functions -->
+        <section class="content-section" id="element-analysis">
+            <h2>📊 Element Analysis Functions</h2>
+            
+            <div class="api-function">
+                <h3><code>getElementPosition(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Analysis Function</span>
+                </div>
+                <p>Calculates the absolute position of an element on the page.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function getElementPosition(element: HTMLElement): {x: number, y: number}</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Parameters</h4>
+                    <ul>
+                        <li><code>element</code> (HTMLElement) - Target element</li>
+                    </ul>
+                    
+                    <h4>Returns</h4>
+                    <ul>
+                        <li><code>Object</code> - Position coordinates {x, y}</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const button = document.querySelector('.submit');
+const position = getElementPosition(button);
+console.log(`Button at: ${position.x}, ${position.y}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>getElementContent(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Content Function</span>
+                </div>
+                <p>Extracts all text content and values from an element.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function getElementContent(element: HTMLElement): string</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Content Types Extracted</h4>
+                    <ul>
+                        <li><strong>Text Elements:</strong> textContent, innerText</li>
+                        <li><strong>Form Elements:</strong> value, placeholder</li>
+                        <li><strong>Images:</strong> alt text, title</li>
+                        <li><strong>Links:</strong> href, title</li>
+                        <li><strong>Buttons:</strong> text content, aria-label</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const link = document.querySelector('a');
+const content = getElementContent(link);
+// Returns: "Click here to learn more"</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>isInteractiveElement(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Classification Function</span>
+                </div>
+                <p>Determines if an element is interactive (clickable, focusable, etc.).</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function isInteractiveElement(element: HTMLElement): boolean</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Interactive Element Types</h4>
+                    <ul>
+                        <li>Form controls (input, button, select, textarea)</li>
+                        <li>Links and anchors</li>
+                        <li>Elements with click handlers</li>
+                        <li>Focusable elements (tabindex)</li>
+                        <li>Role-based interactive elements</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const div = document.querySelector('.clickable-div');
+if (isInteractiveElement(div)) {
+    console.log('Element can be interacted with');
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selector Generation Functions -->
+        <section class="content-section" id="selector-generation">
+            <h2>🎯 Selector Generation Functions</h2>
+            
+            <div class="api-function">
+                <h3><code>generateCSSSelector(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Selector Function</span>
+                </div>
+                <p>Generates the most specific and reliable CSS selector for an element.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function generateCSSSelector(element: HTMLElement): string</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Selector Priority</h4>
+                    <ol>
+                        <li><strong>ID selector:</strong> #unique-id</li>
+                        <li><strong>Data attributes:</strong> [data-testid="value"]</li>
+                        <li><strong>Class selector:</strong> .class-name</li>
+                        <li><strong>Attribute selector:</strong> [name="field"]</li>
+                        <li><strong>Tag with attributes:</strong> input[type="email"]</li>
+                        <li><strong>Hierarchical path:</strong> .parent > .child</li>
+                    </ol>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const input = document.querySelector('#email-field');
+const selector = generateCSSSelector(input);
+console.log(selector); // "#email-field"
+
+const button = document.querySelector('.btn.primary');
+const selector2 = generateCSSSelector(button);
+console.log(selector2); // ".btn.primary"</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>generateXPathSelector(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Selector Function</span>
+                </div>
+                <p>Creates XPath expressions for robust element location.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function generateXPathSelector(element: HTMLElement): string</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>XPath Strategies</h4>
+                    <ul>
+                        <li><strong>Attribute-based:</strong> //button[@id='submit']</li>
+                        <li><strong>Text-based:</strong> //button[text()='Click Me']</li>
+                        <li><strong>Position-based:</strong> //div[1]/button[2]</li>
+                        <li><strong>Class-based:</strong> //div[@class='container']</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const submitBtn = document.querySelector('#submit');
+const xpath = generateXPathSelector(submitBtn);
+console.log(xpath); // "//button[@id='submit']"
+
+const textLink = document.querySelector('a');
+const xpath2 = generateXPathSelector(textLink);
+console.log(xpath2); // "//a[text()='Learn More']"</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>getOptimalSelector(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Smart Selector Function</span>
+                </div>
+                <p>Returns the best selector strategy for a given element based on uniqueness and stability.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function getOptimalSelector(element: HTMLElement): {
+  css: string,
+  xpath: string,
+  recommended: string,
+  strategy: string
+}</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Selection Logic</h4>
+                    <ul>
+                        <li>Tests multiple selector strategies</li>
+                        <li>Validates uniqueness of each selector</li>
+                        <li>Considers stability and maintenance</li>
+                        <li>Returns recommendation with reasoning</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const element = document.querySelector('.complex-element');
+const selectors = getOptimalSelector(element);
+
+console.log(selectors);
+// {
+//   css: ".form-container .submit-btn",
+//   xpath: "//div[@class='form-container']//button",
+//   recommended: "#submit-button",
+//   strategy: "id-based"
+// }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Utility Functions -->
+        <section class="content-section" id="utility-functions">
+            <h2>🛠️ Utility Functions</h2>
+            
+            <div class="api-function">
+                <h3><code>escapeCSS(str)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Utility Function</span>
+                </div>
+                <p>Escapes special characters in CSS selectors.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function escapeCSS(str: string): string</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Escaped Characters</h4>
+                    <ul>
+                        <li>Spaces, colons, brackets</li>
+                        <li>Special CSS characters</li>
+                        <li>Unicode characters</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const className = "btn:primary [large]";
+const escaped = escapeCSS(className);
+console.log(escaped); // "btn\\:primary \\[large\\]"</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>isElementVisible(element)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">contentScript.js</span>
+                    <span class="function-type">Visibility Function</span>
+                </div>
+                <p>Comprehensive visibility check for DOM elements.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function isElementVisible(element: HTMLElement): boolean</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Visibility Checks</h4>
+                    <ul>
+                        <li>Display property not 'none'</li>
+                        <li>Visibility not 'hidden'</li>
+                        <li>Opacity greater than 0</li>
+                        <li>Has positive dimensions</li>
+                        <li>Not outside viewport (optional)</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const modal = document.querySelector('.modal');
+if (isElementVisible(modal)) {
+    console.log('Modal is currently visible');
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UI Functions -->
+        <section class="content-section" id="ui-functions">
+            <h2>🖥️ UI Functions (popup.js)</h2>
+            
+            <div class="api-function">
+                <h3><code>displayResults(elements)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">popup.js</span>
+                    <span class="function-type">UI Function</span>
+                </div>
+                <p>Renders extracted elements in the popup table with pagination.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function displayResults(elements: Array&lt;ElementData&gt;): void</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Paginated table display (15 items per page)</li>
+                        <li>Sortable columns</li>
+                        <li>Copy individual selectors</li>
+                        <li>Real-time search/filter</li>
+                        <li>Element highlighting on click</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === 'elementsExtracted') {
+    displayResults(message.elements);
+    updateStats(message.elements.length);
+  }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>exportToCSV(elements)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">popup.js</span>
+                    <span class="function-type">Export Function</span>
+                </div>
+                <p>Exports element data to CSV format and triggers download.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function exportToCSV(elements: Array&lt;ElementData&gt;): void</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>CSV Structure</h4>
+                    <ul>
+                        <li>TagName, ID, Classes, Text, CSS Selector, XPath</li>
+                        <li>Properly escaped CSV values</li>
+                        <li>UTF-8 encoding support</li>
+                        <li>Timestamp in filename</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">document.getElementById('exportCSV').onclick = () => {
+  const currentElements = getCurrentPageElements();
+  exportToCSV(currentElements);
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>searchElements(query)</code></h3>
+                <div class="function-meta">
+                    <span class="function-file">popup.js</span>
+                    <span class="function-type">Search Function</span>
+                </div>
+                <p>Real-time search and filtering of extracted elements.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-javascript">function searchElements(query: string): Array&lt;ElementData&gt;</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Search Fields</h4>
+                    <ul>
+                        <li>Element tag names</li>
+                        <li>Text content</li>
+                        <li>CSS selectors</li>
+                        <li>Element IDs and classes</li>
+                        <li>Attributes</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">const searchInput = document.getElementById('search');
+searchInput.oninput = (e) => {
+  const filtered = searchElements(e.target.value);
+  displayResults(filtered);
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Structures -->
+        <section class="content-section" id="data-structures">
+            <h2>📋 Data Structures</h2>
+            
+            <div class="api-function">
+                <h3><code>ElementData</code></h3>
+                <div class="function-meta">
+                    <span class="function-type">Interface</span>
+                </div>
+                <p>Primary data structure representing an analyzed DOM element.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-typescript">interface ElementData {
+  tagName: string;
+  id: string;
+  classes: string[];
+  textContent: string;
+  value: string;
+  selector: string;
+  xpath: string;
+  attributes: Record&lt;string, string&gt;;
+  position: Position;
+  dimensions: Dimensions;
+  isVisible: boolean;
+  isInteractive: boolean;
+  elementType: ElementType;
+}</code></pre>
+                </div>
+                
+                <div class="function-details">
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>tagName:</strong> HTML tag name (uppercase)</li>
+                        <li><strong>id:</strong> Element ID attribute</li>
+                        <li><strong>classes:</strong> Array of CSS class names</li>
+                        <li><strong>textContent:</strong> Visible text content</li>
+                        <li><strong>value:</strong> Form element value</li>
+                        <li><strong>selector:</strong> Optimal CSS selector</li>
+                        <li><strong>xpath:</strong> XPath expression</li>
+                        <li><strong>attributes:</strong> Element attributes object</li>
+                        <li><strong>position:</strong> X, Y coordinates</li>
+                        <li><strong>dimensions:</strong> Width, height</li>
+                        <li><strong>isVisible:</strong> Visibility state</li>
+                        <li><strong>isInteractive:</strong> Interactivity state</li>
+                        <li><strong>elementType:</strong> Classification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>Position</code></h3>
+                <div class="function-meta">
+                    <span class="function-type">Interface</span>
+                </div>
+                <p>Element position coordinates.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-typescript">interface Position {
+  x: number;
+  y: number;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>Dimensions</code></h3>
+                <div class="function-meta">
+                    <span class="function-type">Interface</span>
+                </div>
+                <p>Element size dimensions.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-typescript">interface Dimensions {
+  width: number;
+  height: number;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="api-function">
+                <h3><code>ElementType</code></h3>
+                <div class="function-meta">
+                    <span class="function-type">Enum</span>
+                </div>
+                <p>Element classification categories.</p>
+                
+                <div class="function-signature">
+                    <pre><code class="language-typescript">enum ElementType {
+  FORM_INPUT = 'form-input',
+  BUTTON = 'button',
+  LINK = 'link',
+  IMAGE = 'image',
+  TEXT = 'text',
+  CONTAINER = 'container',
+  INTERACTIVE = 'interactive',
+  OTHER = 'other'
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event System -->
+        <section class="content-section">
+            <h2>📡 Event System</h2>
+            
+            <div class="api-function">
+                <h3><code>Chrome Messaging API</code></h3>
+                <div class="function-meta">
+                    <span class="function-type">Communication</span>
+                </div>
+                <p>Message passing between popup and content script.</p>
+                
+                <div class="function-details">
+                    <h4>Message Types</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Popup to Content Script
+{
+  action: 'extractElements',
+  timestamp: Date.now()
+}
+
+// Content Script to Popup
+{
+  action: 'elementsExtracted',
+  elements: ElementData[],
+  count: number,
+  timestamp: Date.now()
+}
+
+// Error messages
+{
+  action: 'error',
+  message: string,
+  details: any
+}</code></pre>
+                    </div>
+                    
+                    <h4>Usage Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Send message from popup
+chrome.tabs.sendMessage(tabId, {
+  action: 'extractElements'
+});
+
+// Listen in content script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'extractElements') {
+    const elements = extractAllElements();
+    sendResponse({
+      action: 'elementsExtracted',
+      elements: elements,
+      count: elements.length
+    });
+  }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Handling -->
+        <section class="content-section">
+            <h2>🚨 Error Handling</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Common Error Types</h3>
+                    <ul>
+                        <li><strong>Permission Errors:</strong> Script injection blocked</li>
+                        <li><strong>Cross-Origin Errors:</strong> Iframe access denied</li>
+                        <li><strong>DOM Errors:</strong> Element not found or invalid</li>
+                        <li><strong>Message Errors:</strong> Communication timeout</li>
+                        <li><strong>Export Errors:</strong> File generation failed</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Error Handling Patterns</h3>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">try {
+  const elements = extractAllElements();
+  chrome.runtime.sendMessage({
+    action: 'elementsExtracted',
+    elements: elements
+  });
+} catch (error) {
+  chrome.runtime.sendMessage({
+    action: 'error',
+    message: error.message,
+    details: error.stack
+  });
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="navigation-section">
+            <div class="nav-links">
+                <a href="features.html" class="nav-link prev">← Features</a>
+                <a href="examples.html" class="nav-link next">Examples →</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/js/guide.js"></script>
+</body>
+</html>

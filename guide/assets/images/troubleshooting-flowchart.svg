@@ -1,0 +1,158 @@
+<svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="troubleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="solutionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="800" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="500" y="40" text-anchor="middle" fill="#1e293b" font-size="24" font-weight="bold">Troubleshooting Flowchart</text>
+  
+  <!-- Start -->
+  <g transform="translate(450, 80)">
+    <ellipse cx="50" cy="25" rx="50" ry="25" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+    <text x="50" y="30" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Issue Found</text>
+  </g>
+  
+  <!-- Decision 1: Extension Loading -->
+  <g transform="translate(425, 150)">
+    <polygon points="50,0 100,25 50,50 0,25" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="30" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Extension</text>
+    <text x="50" y="40" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Loading?</text>
+  </g>
+  
+  <!-- No Path - Extension Not Loading -->
+  <g transform="translate(200, 220)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="url(#troubleGradient)" stroke="#dc2626" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Check Extension</text>
+    <text x="80" y="40" text-anchor="middle" fill="white" font-size="10">• Reload extension</text>
+    <text x="80" y="50" text-anchor="middle" fill="white" font-size="10">• Check permissions</text>
+  </g>
+  
+  <!-- Yes Path - Extension Loading -->
+  <g transform="translate(600, 220)">
+    <polygon points="50,0 100,25 50,50 0,25" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="30" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Elements</text>
+    <text x="50" y="40" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Detected?</text>
+  </g>
+  
+  <!-- No Elements Detected -->
+  <g transform="translate(400, 320)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="url(#troubleGradient)" stroke="#dc2626" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Check Page State</text>
+    <text x="80" y="40" text-anchor="middle" fill="white" font-size="9">• Page fully loaded?</text>
+    <text x="80" y="50" text-anchor="middle" fill="white" font-size="9">• Dynamic content?</text>
+    <text x="80" y="60" text-anchor="middle" fill="white" font-size="9">• Try refresh</text>
+  </g>
+  
+  <!-- Elements Detected -->
+  <g transform="translate(750, 320)">
+    <polygon points="50,0 100,25 50,50 0,25" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="30" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Locators</text>
+    <text x="50" y="40" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Generated?</text>
+  </g>
+  
+  <!-- Locator Issues -->
+  <g transform="translate(600, 420)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="url(#troubleGradient)" stroke="#dc2626" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Locator Problems</text>
+    <text x="80" y="40" text-anchor="middle" fill="white" font-size="9">• Check element uniqueness</text>
+    <text x="80" y="50" text-anchor="middle" fill="white" font-size="9">• Try different strategy</text>
+    <text x="80" y="60" text-anchor="middle" fill="white" font-size="9">• Manual inspection</text>
+  </g>
+  
+  <!-- Success -->
+  <g transform="translate(800, 420)">
+    <rect x="0" y="0" width="120" height="60" rx="8" fill="url(#solutionGradient)" stroke="#059669" stroke-width="2"/>
+    <text x="60" y="25" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Success!</text>
+    <text x="60" y="40" text-anchor="middle" fill="white" font-size="10">Working correctly</text>
+  </g>
+  
+  <!-- Common Solutions -->
+  <g transform="translate(50, 520)">
+    <rect x="0" y="0" width="900" height="180" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="20" y="30" fill="#1e293b" font-size="16" font-weight="bold">Common Solutions</text>
+    
+    <!-- Solution Grid -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="200" height="100" rx="5" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+      <text x="10" y="20" fill="#dc2626" font-size="12" font-weight="bold">Permission Issues</text>
+      <text x="10" y="35" fill="#7f1d1d" font-size="10">• Check site permissions</text>
+      <text x="10" y="47" fill="#7f1d1d" font-size="10">• Enable in Incognito</text>
+      <text x="10" y="59" fill="#7f1d1d" font-size="10">• Refresh extension</text>
+      <text x="10" y="71" fill="#7f1d1d" font-size="10">• Check Chrome version</text>
+    </g>
+    
+    <g transform="translate(230, 50)">
+      <rect x="0" y="0" width="200" height="100" rx="5" fill="#fefce8" stroke="#fef3c7" stroke-width="1"/>
+      <text x="10" y="20" fill="#d97706" font-size="12" font-weight="bold">Performance Issues</text>
+      <text x="10" y="35" fill="#92400e" font-size="10">• Large page optimization</text>
+      <text x="10" y="47" fill="#92400e" font-size="10">• Reduce scan depth</text>
+      <text x="10" y="59" fill="#92400e" font-size="10">• Filter element types</text>
+      <text x="10" y="71" fill="#92400e" font-size="10">• Use selective scan</text>
+    </g>
+    
+    <g transform="translate(440, 50)">
+      <rect x="0" y="0" width="200" height="100" rx="5" fill="#f0f9ff" stroke="#bfdbfe" stroke-width="1"/>
+      <text x="10" y="20" fill="#2563eb" font-size="12" font-weight="bold">Dynamic Content</text>
+      <text x="10" y="35" fill="#1e40af" font-size="10">• Wait for page load</text>
+      <text x="10" y="47" fill="#1e40af" font-size="10">• Check AJAX completion</text>
+      <text x="10" y="59" fill="#1e40af" font-size="10">• Manual trigger scan</text>
+      <text x="10" y="71" fill="#1e40af" font-size="10">• Inspect after actions</text>
+    </g>
+    
+    <g transform="translate(650, 50)">
+      <rect x="0" y="0" width="200" height="100" rx="5" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="10" y="20" fill="#059669" font-size="12" font-weight="bold">Locator Quality</text>
+      <text x="10" y="35" fill="#047857" font-size="10">• Use stable attributes</text>
+      <text x="10" y="47" fill="#047857" font-size="10">• Avoid brittle selectors</text>
+      <text x="10" y="59" fill="#047857" font-size="10">• Test in different contexts</text>
+      <text x="10" y="71" fill="#047857" font-size="10">• Validate uniqueness</text>
+    </g>
+  </g>
+  
+  <!-- Flow Lines -->
+  <path d="M 500 105 L 475 150" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 425 175 L 280 220" stroke="#ef4444" stroke-width="2"/>
+  <text x="350" y="195" fill="#ef4444" font-size="10">No</text>
+  
+  <path d="M 525 175 L 650 220" stroke="#10b981" stroke-width="2"/>
+  <text x="590" y="195" fill="#10b981" font-size="10">Yes</text>
+  
+  <path d="M 600 245 L 480 320" stroke="#ef4444" stroke-width="2"/>
+  <text x="535" y="280" fill="#ef4444" font-size="10">No</text>
+  
+  <path d="M 700 245 L 800 320" stroke="#10b981" stroke-width="2"/>
+  <text x="755" y="280" fill="#10b981" font-size="10">Yes</text>
+  
+  <path d="M 750 345 L 680 420" stroke="#ef4444" stroke-width="2"/>
+  <text x="710" y="380" fill="#ef4444" font-size="10">No</text>
+  
+  <path d="M 850 345 L 860 420" stroke="#10b981" stroke-width="2"/>
+  <text x="870" y="380" fill="#10b981" font-size="10">Yes</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <!-- Debug Info -->
+  <g transform="translate(750, 720)">
+    <text x="0" y="0" fill="#6b7280" font-size="11">
+      <tspan x="0" dy="0">Debug Tips:</tspan>
+      <tspan x="0" dy="15">• Check browser console</tspan>
+      <tspan x="0" dy="30">• Enable debug mode</tspan>
+      <tspan x="0" dy="45">• Test in different browsers</tspan>
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - Elements Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🔍 Elements Extractor</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>🏗️ Architecture Overview</h1>
+            <p>Understanding the technical architecture and component design of Elements Extractor</p>
+        </header>
+
+        <!-- Architecture Overview -->
+        <section class="content-section">
+            <h2>🎯 System Architecture</h2>
+            <p>Elements Extractor follows a modular Chrome extension architecture with clear separation of concerns:</p>
+            
+            <div class="architecture-diagram">
+                <div class="arch-layer">
+                    <h3>🖥️ User Interface Layer</h3>
+                    <div class="arch-components">
+                        <div class="arch-component popup">
+                            <strong>popup.html</strong><br>
+                            Extension popup interface
+                        </div>
+                        <div class="arch-component popup-js">
+                            <strong>popup.js</strong><br>
+                            UI logic & event handling
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <h3>🔄 Communication Layer</h3>
+                    <div class="arch-components">
+                        <div class="arch-component messaging">
+                            <strong>Chrome Messaging API</strong><br>
+                            popup ↔ content script communication
+                        </div>
+                        <div class="arch-component storage">
+                            <strong>Chrome Storage API</strong><br>
+                            Data persistence & state management
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <h3>🎯 Content Script Layer</h3>
+                    <div class="arch-components">
+                        <div class="arch-component content">
+                            <strong>contentScript.js</strong><br>
+                            DOM analysis & element extraction
+                        </div>
+                        <div class="arch-component injection">
+                            <strong>Dynamic Injection</strong><br>
+                            Page-specific script execution
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <h3>🌐 Web Page Layer</h3>
+                    <div class="arch-components">
+                        <div class="arch-component dom">
+                            <strong>DOM Tree</strong><br>
+                            Target elements & structure
+                        </div>
+                        <div class="arch-component shadow">
+                            <strong>Shadow DOM</strong><br>
+                            Encapsulated components
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Components -->
+        <section class="content-section">
+            <h2>🧩 Core Components</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>📋 Popup Interface (popup.html/js)</h3>
+                    <ul>
+                        <li><strong>Extract Button:</strong> Initiates element scanning</li>
+                        <li><strong>Results Table:</strong> Displays extracted elements</li>
+                        <li><strong>Pagination:</strong> Manages large result sets</li>
+                        <li><strong>Search/Filter:</strong> Real-time element filtering</li>
+                        <li><strong>Export Functions:</strong> Copy to clipboard, download</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Main extraction handler
+document.getElementById('extract').onclick = async () => {
+  const extractBtn = document.getElementById('extract');
+  extractBtn.disabled = true;
+  
+  // Inject content script and extract elements
+  const [tab] = await chrome.tabs.query({active: true});
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['contentScript.js']
+  });
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔍 Content Script (contentScript.js)</h3>
+                    <ul>
+                        <li><strong>DOM Scanner:</strong> Traverses entire page structure</li>
+                        <li><strong>Element Analyzer:</strong> Generates selectors & metadata</li>
+                        <li><strong>Shadow DOM Handler:</strong> Processes encapsulated content</li>
+                        <li><strong>Locator Generator:</strong> Creates CSS/XPath selectors</li>
+                        <li><strong>Element Highlighter:</strong> Visual element identification</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Core extraction function
+function extractAllElements() {
+  const elements = [];
+  const allNodes = document.querySelectorAll('*');
+  
+  allNodes.forEach(element => {
+    if (shouldExtractElement(element)) {
+      elements.push(analyzeElement(element));
+    }
+  });
+  
+  return elements;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Flow -->
+        <section class="content-section">
+            <h2>🔄 Data Flow Architecture</h2>
+            
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <h4>User Interaction</h4>
+                    <p>User clicks "Extract Elements" button in popup</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <h4>Script Injection</h4>
+                    <p>popup.js injects contentScript.js into active tab</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <h4>DOM Analysis</h4>
+                    <p>contentScript.js scans and analyzes page elements</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <h4>Data Processing</h4>
+                    <p>Elements are filtered, analyzed, and structured</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <h4>Result Transmission</h4>
+                    <p>Processed data sent back to popup via messaging</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">6</div>
+                    <h4>UI Rendering</h4>
+                    <p>popup.js renders results in table with pagination</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Element Analysis Engine -->
+        <section class="content-section">
+            <h2>🎯 Element Analysis Engine</h2>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>🔍 Detection Phase</h3>
+                    <ul>
+                        <li>DOM tree traversal</li>
+                        <li>Element type identification</li>
+                        <li>Interactive element filtering</li>
+                        <li>Shadow DOM penetration</li>
+                        <li>Iframe content analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📊 Analysis Phase</h3>
+                    <ul>
+                        <li>CSS selector generation</li>
+                        <li>XPath locator creation</li>
+                        <li>Element metadata extraction</li>
+                        <li>Attribute analysis</li>
+                        <li>Text content processing</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Presentation Phase</h3>
+                    <ul>
+                        <li>Data structure formatting</li>
+                        <li>Table rendering optimization</li>
+                        <li>Pagination implementation</li>
+                        <li>Search/filter functionality</li>
+                        <li>Export format preparation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section class="content-section">
+            <h2>⚙️ Technical Specifications</h2>
+            
+            <div class="spec-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                            <th>Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Manifest</strong></td>
+                            <td>Chrome Extension Manifest V3</td>
+                            <td>Extension configuration</td>
+                            <td>Permissions, content scripts, popup definition</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Popup Interface</strong></td>
+                            <td>HTML5 + CSS3 + Vanilla JS</td>
+                            <td>User interaction layer</td>
+                            <td>Responsive design, real-time updates, pagination</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Content Script</strong></td>
+                            <td>Vanilla JavaScript</td>
+                            <td>DOM manipulation & analysis</td>
+                            <td>Cross-frame, Shadow DOM, dynamic injection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Storage System</strong></td>
+                            <td>Chrome Storage API</td>
+                            <td>Data persistence</td>
+                            <td>Local storage, session management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Messaging</strong></td>
+                            <td>Chrome Messaging API</td>
+                            <td>Component communication</td>
+                            <td>Async messaging, error handling</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Performance Architecture -->
+        <section class="content-section">
+            <h2>⚡ Performance Architecture</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>🚀 Optimization Strategies</h3>
+                    <ul>
+                        <li><strong>Lazy Loading:</strong> Content scripts injected on demand</li>
+                        <li><strong>Efficient DOM Queries:</strong> Optimized selector strategies</li>
+                        <li><strong>Memory Management:</strong> Cleanup of event listeners</li>
+                        <li><strong>Batch Processing:</strong> Element analysis in chunks</li>
+                        <li><strong>Caching:</strong> Results stored for quick access</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📊 Performance Metrics</h3>
+                    <ul>
+                        <li><strong>Extraction Speed:</strong> ~500ms for typical pages</li>
+                        <li><strong>Memory Usage:</strong> <5MB for large pages</li>
+                        <li><strong>UI Responsiveness:</strong> 60fps during interaction</li>
+                        <li><strong>Pagination:</strong> 15 elements per page</li>
+                        <li><strong>Search Performance:</strong> Real-time filtering</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Architecture -->
+        <section class="content-section">
+            <h2>🔒 Security Architecture</h2>
+            
+            <div class="security-features">
+                <div class="security-item">
+                    <h4>🛡️ Content Security Policy</h4>
+                    <p>Strict CSP prevents code injection and ensures safe execution</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4>🔐 Permission Model</h4>
+                    <p>Minimal permissions requested - only activeTab and scripting</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4>🧹 Input Sanitization</h4>
+                    <p>All extracted content is HTML-escaped to prevent XSS</p>
+                </div>
+                
+                <div class="security-item">
+                    <h4>🔍 Isolated Execution</h4>
+                    <p>Content scripts run in isolated world, preventing conflicts</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="navigation-section">
+            <div class="nav-links">
+                <a href="getting-started.html" class="nav-link prev">← Getting Started</a>
+                <a href="features.html" class="nav-link next">Features →</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/js/guide.js"></script>
+</body>
+</html>

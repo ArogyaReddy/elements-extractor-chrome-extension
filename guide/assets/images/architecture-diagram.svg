@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">Elements Extractor Architecture</text>
+  
+  <!-- Browser Layer -->
+  <rect x="50" y="80" width="700" height="120" rx="10" fill="url(#grad1)" opacity="0.8"/>
+  <text x="400" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Browser Environment</text>
+  
+  <!-- Extension Components -->
+  <rect x="80" y="120" width="160" height="60" rx="5" fill="white" stroke="#667eea" stroke-width="2"/>
+  <text x="160" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#667eea">Popup Interface</text>
+  <text x="160" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">popup.html/js</text>
+  <text x="160" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">User Controls</text>
+  
+  <rect x="280" y="120" width="160" height="60" rx="5" fill="white" stroke="#667eea" stroke-width="2"/>
+  <text x="360" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#667eea">Content Script</text>
+  <text x="360" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">contentScript.js</text>
+  <text x="360" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">DOM Analysis</text>
+  
+  <rect x="480" y="120" width="160" height="60" rx="5" fill="white" stroke="#667eea" stroke-width="2"/>
+  <text x="560" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#667eea">Manifest</text>
+  <text x="560" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">manifest.json</text>
+  <text x="560" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Permissions</text>
+  
+  <!-- Website Layer -->
+  <rect x="50" y="240" width="700" height="120" rx="10" fill="url(#grad2)" opacity="0.8"/>
+  <text x="400" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Target Website</text>
+  
+  <!-- DOM Components -->
+  <rect x="80" y="280" width="120" height="60" rx="5" fill="white" stroke="#f5576c" stroke-width="2"/>
+  <text x="140" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f5576c">DOM Tree</text>
+  <text x="140" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">HTML Elements</text>
+  <text x="140" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Attributes</text>
+  
+  <rect x="220" y="280" width="120" height="60" rx="5" fill="white" stroke="#f5576c" stroke-width="2"/>
+  <text x="280" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f5576c">Shadow DOM</text>
+  <text x="280" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Encapsulated</text>
+  <text x="280" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Components</text>
+  
+  <rect x="360" y="280" width="120" height="60" rx="5" fill="white" stroke="#f5576c" stroke-width="2"/>
+  <text x="420" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f5576c">Iframes</text>
+  <text x="420" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Nested</text>
+  <text x="420" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Documents</text>
+  
+  <rect x="500" y="280" width="120" height="60" rx="5" fill="white" stroke="#f5576c" stroke-width="2"/>
+  <text x="560" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f5576c">Dynamic</text>
+  <text x="560" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">JavaScript</text>
+  <text x="560" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Elements</text>
+  
+  <!-- Processing Layer -->
+  <rect x="50" y="400" width="700" height="120" rx="10" fill="url(#grad3)" opacity="0.8"/>
+  <text x="400" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Analysis & Output</text>
+  
+  <!-- Analysis Components -->
+  <rect x="80" y="440" width="140" height="60" rx="5" fill="white" stroke="#00f2fe" stroke-width="2"/>
+  <text x="150" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00f2fe">Element Scanner</text>
+  <text x="150" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">DOM Traversal</text>
+  <text x="150" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Element Detection</text>
+  
+  <rect x="240" y="440" width="140" height="60" rx="5" fill="white" stroke="#00f2fe" stroke-width="2"/>
+  <text x="310" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00f2fe">Locator Generator</text>
+  <text x="310" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Selector Creation</text>
+  <text x="310" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Priority Ranking</text>
+  
+  <rect x="400" y="440" width="140" height="60" rx="5" fill="white" stroke="#00f2fe" stroke-width="2"/>
+  <text x="470" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00f2fe">Data Formatter</text>
+  <text x="470" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">JSON/CSV Export</text>
+  <text x="470" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Code Generation</text>
+  
+  <rect x="560" y="440" width="140" height="60" rx="5" fill="white" stroke="#00f2fe" stroke-width="2"/>
+  <text x="630" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#00f2fe">UI Display</text>
+  <text x="630" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Results Table</text>
+  <text x="630" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Element Preview</text>
+  
+  <!-- Flow Arrows -->
+  <!-- Popup to Content Script -->
+  <line x1="240" y1="150" x2="280" y2="150" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Content Script to DOM -->
+  <line x1="360" y1="180" x2="360" y2="240" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- DOM to Analysis -->
+  <line x1="310" y1="360" x2="310" y2="400" stroke="#f5576c" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Analysis flow -->
+  <line x1="220" y1="470" x2="240" y2="470" stroke="#00f2fe" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="380" y1="470" x2="400" y2="470" stroke="#00f2fe" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="540" y1="470" x2="560" y2="470" stroke="#00f2fe" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <rect x="50" y="540" width="700" height="50" rx="5" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="60" y="560" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Data Flow:</text>
+  <text x="60" y="575" font-family="Arial, sans-serif" font-size="10" fill="#64748b">1. User clicks extension → 2. Inject content script → 3. Scan DOM → 4. Analyze elements → 5. Generate locators → 6. Format output → 7. Display results</text>
+</svg>

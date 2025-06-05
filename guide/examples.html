@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Elements Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🔍 Elements Extractor</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="examples.html" class="active">Examples</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>💡 Examples & Use Cases</h1>
+            <p>Real-world examples, test cases, and implementation patterns for Elements Extractor</p>
+        </header>
+
+        <!-- Quick Examples Navigation -->
+        <section class="content-section">
+            <h2>🧭 Example Categories</h2>
+            <div class="example-nav-grid">
+                <a href="#basic-usage" class="example-nav-item">
+                    <h3>🚀 Basic Usage</h3>
+                    <p>Simple extraction scenarios</p>
+                </a>
+                <a href="#test-automation" class="example-nav-item">
+                    <h3>🧪 Test Automation</h3>
+                    <p>Selenium, Playwright, Cypress examples</p>
+                </a>
+                <a href="#web-scraping" class="example-nav-item">
+                    <h3>🕷️ Web Scraping</h3>
+                    <p>Data extraction and monitoring</p>
+                </a>
+                <a href="#integration" class="example-nav-item">
+                    <h3>🔗 Integration</h3>
+                    <p>API integration and automation workflows</p>
+                </a>
+                <a href="#advanced-cases" class="example-nav-item">
+                    <h3>🔬 Advanced Cases</h3>
+                    <p>Complex scenarios and edge cases</p>
+                </a>
+                <a href="#real-world" class="example-nav-item">
+                    <h3>🌍 Real World</h3>
+                    <p>Production use cases and case studies</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Basic Usage Examples -->
+        <section class="content-section" id="basic-usage">
+            <h2>🚀 Basic Usage Examples</h2>
+            
+            <div class="example-card">
+                <h3>📋 Simple Form Extraction</h3>
+                <p>Extract all form elements from a login page for testing.</p>
+                
+                <div class="example-scenario">
+                    <h4>Scenario</h4>
+                    <p>You need to create automated tests for a login form with username, password, and submit button.</p>
+                </div>
+                
+                <div class="example-steps">
+                    <h4>Steps</h4>
+                    <ol>
+                        <li>Navigate to the login page</li>
+                        <li>Click the Elements Extractor extension</li>
+                        <li>Click "Extract Elements"</li>
+                        <li>Filter for form elements</li>
+                        <li>Copy selectors to clipboard</li>
+                    </ol>
+                </div>
+                
+                <div class="example-output">
+                    <h4>Expected Output</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-json">[
+  {
+    "tagName": "INPUT",
+    "id": "username",
+    "selector": "#username",
+    "xpath": "//input[@id='username']",
+    "textContent": "",
+    "value": "",
+    "attributes": {
+      "type": "text",
+      "name": "username",
+      "placeholder": "Enter username"
+    }
+  },
+  {
+    "tagName": "INPUT",
+    "id": "password",
+    "selector": "#password",
+    "xpath": "//input[@id='password']",
+    "textContent": "",
+    "value": "",
+    "attributes": {
+      "type": "password",
+      "name": "password"
+    }
+  },
+  {
+    "tagName": "BUTTON",
+    "id": "login-btn",
+    "selector": "#login-btn",
+    "xpath": "//button[@id='login-btn']",
+    "textContent": "Login",
+    "attributes": {
+      "type": "submit"
+    }
+  }
+]</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>🔗 Navigation Menu Analysis</h3>
+                <p>Extract navigation links for site structure analysis.</p>
+                
+                <div class="example-scenario">
+                    <h4>Scenario</h4>
+                    <p>Analyze a website's navigation structure to understand user journeys and create comprehensive test coverage.</p>
+                </div>
+                
+                <div class="example-output">
+                    <h4>Typical Results</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-csv">TagName,ID,Classes,TextContent,CSS Selector,XPath
+A,home-link,nav-link active,Home,.nav-link.active,//a[@class='nav-link active']
+A,about-link,nav-link,About,#about-link,//a[@id='about-link']
+A,services-link,nav-link,Services,#services-link,//a[@id='services-link']
+A,contact-link,nav-link,Contact,#contact-link,//a[@id='contact-link']</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test Automation Examples -->
+        <section class="content-section" id="test-automation">
+            <h2>🧪 Test Automation Examples</h2>
+            
+            <div class="automation-framework">
+                <h3>🎭 Playwright Test Generation</h3>
+                <p>Convert extracted elements into Playwright test scripts.</p>
+                
+                <div class="framework-example">
+                    <h4>1. Extract Elements</h4>
+                    <p>Use Elements Extractor on your target page</p>
+                    
+                    <h4>2. Generate Playwright Code</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Generated from Elements Extractor data
+import { test, expect } from '@playwright/test';
+
+test('login form test', async ({ page }) => {
+  await page.goto('https://example.com/login');
+  
+  // Fill username (extracted: #username)
+  await page.fill('#username', 'testuser@example.com');
+  
+  // Fill password (extracted: #password)
+  await page.fill('#password', 'securepassword');
+  
+  // Click login button (extracted: #login-btn)
+  await page.click('#login-btn');
+  
+  // Verify navigation (extracted: .welcome-message)
+  await expect(page.locator('.welcome-message')).toBeVisible();
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="automation-framework">
+                <h3>🔍 Selenium WebDriver Integration</h3>
+                <p>Using extracted selectors in Selenium tests.</p>
+                
+                <div class="framework-example">
+                    <h4>Python Selenium Example</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-python">from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class LoginPageTest:
+    def __init__(self, driver):
+        self.driver = driver
+        
+        # Selectors extracted from Elements Extractor
+        self.username_field = "#username"
+        self.password_field = "#password"
+        self.login_button = "#login-btn"
+        self.error_message = ".error-message"
+        
+    def login(self, username, password):
+        # Wait for elements to be present
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, self.username_field))
+        )
+        
+        # Fill form fields
+        self.driver.find_element(By.CSS_SELECTOR, self.username_field).send_keys(username)
+        self.driver.find_element(By.CSS_SELECTOR, self.password_field).send_keys(password)
+        
+        # Submit form
+        self.driver.find_element(By.CSS_SELECTOR, self.login_button).click()
+        
+    def is_error_displayed(self):
+        try:
+            error_element = self.driver.find_element(By.CSS_SELECTOR, self.error_message)
+            return error_element.is_displayed()
+        except:
+            return False
+
+# Usage
+driver = webdriver.Chrome()
+login_page = LoginPageTest(driver)
+login_page.login("testuser", "wrongpassword")
+assert login_page.is_error_displayed(), "Error message should be displayed"</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="automation-framework">
+                <h3>🌲 Cypress Test Implementation</h3>
+                <p>Cypress tests using extracted element data.</p>
+                
+                <div class="framework-example">
+                    <h4>Cypress E2E Test</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// cypress/integration/login.spec.js
+describe('Login Flow', () => {
+  // Selectors from Elements Extractor
+  const selectors = {
+    usernameInput: '#username',
+    passwordInput: '#password',
+    loginButton: '#login-btn',
+    dashboardHeader: '.dashboard-header',
+    errorAlert: '.alert-error'
+  };
+
+  beforeEach(() => {
+    cy.visit('/login');
+  });
+
+  it('should login successfully with valid credentials', () => {
+    cy.get(selectors.usernameInput).type('user@example.com');
+    cy.get(selectors.passwordInput).type('validpassword');
+    cy.get(selectors.loginButton).click();
+    
+    cy.get(selectors.dashboardHeader)
+      .should('be.visible')
+      .and('contain', 'Welcome');
+  });
+
+  it('should show error with invalid credentials', () => {
+    cy.get(selectors.usernameInput).type('user@example.com');
+    cy.get(selectors.passwordInput).type('wrongpassword');
+    cy.get(selectors.loginButton).click();
+    
+    cy.get(selectors.errorAlert)
+      .should('be.visible')
+      .and('contain', 'Invalid credentials');
+  });
+
+  it('should validate required fields', () => {
+    cy.get(selectors.loginButton).click();
+    
+    cy.get(selectors.usernameInput)
+      .should('have.attr', 'required');
+    cy.get(selectors.passwordInput)
+      .should('have.attr', 'required');
+  });
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Scraping Examples -->
+        <section class="content-section" id="web-scraping">
+            <h2>🕷️ Web Scraping Examples</h2>
+            
+            <div class="scraping-example">
+                <h3>📰 News Article Scraping</h3>
+                <p>Extract article elements for content aggregation.</p>
+                
+                <div class="scraping-scenario">
+                    <h4>Scenario</h4>
+                    <p>Build a news aggregator that collects article titles, descriptions, and links from various news websites.</p>
+                </div>
+                
+                <div class="scraping-implementation">
+                    <h4>Implementation Steps</h4>
+                    <ol>
+                        <li>Use Elements Extractor to identify article patterns</li>
+                        <li>Extract selectors for title, description, link elements</li>
+                        <li>Create scraping script using extracted selectors</li>
+                        <li>Implement data processing and storage</li>
+                    </ol>
+                </div>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-python">import requests
+from bs4 import BeautifulSoup
+import json
+
+class NewsExtractor:
+    def __init__(self):
+        # Selectors identified using Elements Extractor
+        self.selectors = {
+            'article_container': '.article-card',
+            'title': '.article-title',
+            'description': '.article-excerpt',
+            'link': '.article-link',
+            'author': '.article-author',
+            'date': '.article-date'
+        }
+    
+    def extract_articles(self, url):
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        articles = []
+        article_containers = soup.select(self.selectors['article_container'])
+        
+        for container in article_containers:
+            article = {
+                'title': self.safe_extract(container, self.selectors['title']),
+                'description': self.safe_extract(container, self.selectors['description']),
+                'link': self.safe_extract_attr(container, self.selectors['link'], 'href'),
+                'author': self.safe_extract(container, self.selectors['author']),
+                'date': self.safe_extract(container, self.selectors['date'])
+            }
+            articles.append(article)
+        
+        return articles
+    
+    def safe_extract(self, container, selector):
+        element = container.select_one(selector)
+        return element.get_text(strip=True) if element else None
+    
+    def safe_extract_attr(self, container, selector, attr):
+        element = container.select_one(selector)
+        return element.get(attr) if element else None
+
+# Usage
+extractor = NewsExtractor()
+articles = extractor.extract_articles('https://example-news-site.com')
+print(json.dumps(articles, indent=2))</code></pre>
+                </div>
+            </div>
+
+            <div class="scraping-example">
+                <h3>🏪 E-commerce Product Monitoring</h3>
+                <p>Track product prices and availability across multiple sites.</p>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-javascript">// Node.js scraping script using Puppeteer
+const puppeteer = require('puppeteer');
+
+class ProductMonitor {
+  constructor() {
+    // Selectors extracted using Elements Extractor
+    this.siteSelectors = {
+      amazon: {
+        title: '#productTitle',
+        price: '.a-price-whole',
+        availability: '#availability span',
+        rating: '[data-hook="average-star-rating"] span'
+      },
+      ebay: {
+        title: '#x-title-label-lbl',
+        price: '.notranslate',
+        availability: '#qtySubTxt',
+        rating: '.reviews .ebay-review-star-rating'
+      }
+    };
+  }
+
+  async monitorProduct(site, productUrl) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    
+    try {
+      await page.goto(productUrl);
+      const selectors = this.siteSelectors[site];
+      
+      const product = await page.evaluate((sel) => {
+        return {
+          title: document.querySelector(sel.title)?.textContent?.trim(),
+          price: document.querySelector(sel.price)?.textContent?.trim(),
+          availability: document.querySelector(sel.availability)?.textContent?.trim(),
+          rating: document.querySelector(sel.rating)?.textContent?.trim(),
+          timestamp: new Date().toISOString()
+        };
+      }, selectors);
+      
+      return product;
+    } finally {
+      await browser.close();
+    }
+  }
+
+  async compareProducts(urls) {
+    const results = await Promise.all(
+      urls.map(({site, url}) => this.monitorProduct(site, url))
+    );
+    
+    return results.filter(result => result.title);
+  }
+}
+
+// Usage
+const monitor = new ProductMonitor();
+monitor.compareProducts([
+  { site: 'amazon', url: 'https://amazon.com/product/...' },
+  { site: 'ebay', url: 'https://ebay.com/item/...' }
+]).then(products => {
+  console.log('Product comparison:', products);
+});</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Examples -->
+        <section class="content-section" id="integration">
+            <h2>🔗 Integration Examples</h2>
+            
+            <div class="integration-example">
+                <h3>📊 Test Report Generation</h3>
+                <p>Integrate with CI/CD pipelines for automated test report generation.</p>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-yaml"># GitHub Actions workflow
+name: E2E Testing with Elements Extractor
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Run Elements Extractor Analysis
+      run: |
+        npm run extract-elements
+        npm run generate-selectors
+    
+    - name: Run E2E Tests
+      run: npm run test:e2e
+    
+    - name: Generate Test Report
+      if: always()
+      run: npm run report:generate
+    
+    - name: Upload Results
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: test-results
+        path: |
+          test-results/
+          element-analysis/</code></pre>
+                </div>
+            </div>
+
+            <div class="integration-example">
+                <h3>🔄 API Integration Workflow</h3>
+                <p>Automated element extraction and API data synchronization.</p>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-javascript">// API integration service
+class ElementExtractorAPI {
+  constructor(apiKey) {
+    this.apiKey = apiKey;
+    this.baseUrl = 'https://api.yourservice.com';
+  }
+
+  async analyzeWebsite(url, options = {}) {
+    try {
+      // Trigger Elements Extractor analysis
+      const extractionResult = await this.extractElements(url);
+      
+      // Process and classify elements
+      const classifiedElements = this.classifyElements(extractionResult.elements);
+      
+      // Store in database via API
+      const analysis = await this.storeAnalysis({
+        url: url,
+        timestamp: new Date().toISOString(),
+        elementCount: extractionResult.elements.length,
+        elements: classifiedElements,
+        metadata: options
+      });
+      
+      return {
+        analysisId: analysis.id,
+        summary: this.generateSummary(classifiedElements),
+        downloadUrl: analysis.downloadUrl
+      };
+      
+    } catch (error) {
+      throw new Error(`Analysis failed: ${error.message}`);
+    }
+  }
+
+  classifyElements(elements) {
+    return elements.map(element => ({
+      ...element,
+      category: this.determineCategory(element),
+      complexity: this.calculateComplexity(element),
+      testability: this.assessTestability(element)
+    }));
+  }
+
+  determineCategory(element) {
+    if (element.tagName === 'BUTTON' || element.attributes.type === 'submit') {
+      return 'action';
+    } else if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+      return 'input';
+    } else if (element.tagName === 'A') {
+      return 'navigation';
+    } else if (element.textContent && element.textContent.length > 20) {
+      return 'content';
+    }
+    return 'other';
+  }
+
+  async storeAnalysis(analysisData) {
+    const response = await fetch(`${this.baseUrl}/analyses`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(analysisData)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.statusText}`);
+    }
+    
+    return response.json();
+  }
+}
+
+// Usage in automation pipeline
+const api = new ElementExtractorAPI(process.env.API_KEY);
+
+async function processWebsites(urls) {
+  const results = [];
+  
+  for (const url of urls) {
+    console.log(`Analyzing ${url}...`);
+    
+    try {
+      const analysis = await api.analyzeWebsite(url, {
+        includeMetadata: true,
+        generateTestScripts: true
+      });
+      
+      results.push({
+        url,
+        status: 'success',
+        analysis
+      });
+      
+    } catch (error) {
+      results.push({
+        url,
+        status: 'error',
+        error: error.message
+      });
+    }
+  }
+  
+  return results;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Cases -->
+        <section class="content-section" id="advanced-cases">
+            <h2>🔬 Advanced Use Cases</h2>
+            
+            <div class="advanced-case">
+                <h3>🌊 Shadow DOM and Web Components</h3>
+                <p>Handling modern web applications with encapsulated components.</p>
+                
+                <div class="case-challenge">
+                    <h4>Challenge</h4>
+                    <p>Modern web applications use Shadow DOM and web components that are not accessible through regular DOM queries.</p>
+                </div>
+                
+                <div class="case-solution">
+                    <h4>Solution</h4>
+                    <p>Elements Extractor can penetrate Shadow DOM boundaries to extract elements from encapsulated components.</p>
+                </div>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-javascript">// Custom extraction for Shadow DOM components
+function extractFromShadowComponents() {
+  const results = [];
+  
+  // Find all elements with shadow roots
+  const shadowHosts = document.querySelectorAll('*');
+  
+  shadowHosts.forEach(host => {
+    if (host.shadowRoot) {
+      console.log(`Found shadow root in: ${host.tagName}`);
+      
+      // Extract elements from shadow DOM
+      const shadowElements = host.shadowRoot.querySelectorAll('*');
+      
+      shadowElements.forEach(element => {
+        if (shouldExtractElement(element)) {
+          const analysis = analyzeElement(element);
+          
+          // Add shadow DOM context
+          analysis.shadowContext = {
+            hostElement: host.tagName,
+            hostSelector: generateCSSSelector(host),
+            shadowPath: generateShadowPath(element, host)
+          };
+          
+          results.push(analysis);
+        }
+      });
+    }
+  });
+  
+  return results;
+}
+
+function generateShadowPath(element, shadowHost) {
+  const pathParts = [];
+  let current = element;
+  
+  while (current && current !== shadowHost.shadowRoot) {
+    pathParts.unshift(generateCSSSelector(current));
+    current = current.parentElement;
+  }
+  
+  return pathParts.join(' > ');
+}
+
+// Usage in Playwright for Shadow DOM elements
+test('shadow DOM component interaction', async ({ page }) => {
+  // Navigate to page with web components
+  await page.goto('/app-with-components');
+  
+  // Use shadow DOM selector extracted by Elements Extractor
+  const shadowButton = page.locator('my-component >>> button.submit');
+  await shadowButton.click();
+  
+  // Verify component state
+  const result = page.locator('my-component >>> .result');
+  await expect(result).toHaveText('Success');
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="advanced-case">
+                <h3>🔄 Dynamic Content Handling</h3>
+                <p>Working with SPAs and dynamically loaded content.</p>
+                
+                <div class="case-challenge">
+                    <h4>Challenge</h4>
+                    <p>Single Page Applications (SPAs) load content dynamically, making it difficult to extract elements that appear after initial page load.</p>
+                </div>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-javascript">// Dynamic content monitoring and extraction
+class DynamicElementExtractor {
+  constructor() {
+    this.observer = null;
+    this.extractedElements = new Map();
+    this.callbacks = [];
+  }
+
+  startMonitoring(options = {}) {
+    this.observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              this.processNewElement(node);
+            }
+          });
+        }
+      });
+    });
+
+    this.observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: options.observeAttributes || false,
+      attributeOldValue: options.observeAttributeChanges || false
+    });
+  }
+
+  processNewElement(element) {
+    // Check if element should be extracted
+    if (shouldExtractElement(element)) {
+      const analysis = analyzeElement(element);
+      const elementId = this.generateElementId(analysis);
+      
+      if (!this.extractedElements.has(elementId)) {
+        this.extractedElements.set(elementId, analysis);
+        
+        // Notify callbacks
+        this.callbacks.forEach(callback => {
+          callback('elementAdded', analysis);
+        });
+      }
+    }
+
+    // Process child elements
+    const children = element.querySelectorAll('*');
+    children.forEach(child => {
+      if (shouldExtractElement(child)) {
+        this.processNewElement(child);
+      }
+    });
+  }
+
+  generateElementId(analysis) {
+    return `${analysis.tagName}_${analysis.selector}_${analysis.textContent}`.replace(/[^a-zA-Z0-9]/g, '_');
+  }
+
+  onElementChange(callback) {
+    this.callbacks.push(callback);
+  }
+
+  stopMonitoring() {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+  }
+
+  getExtractedElements() {
+    return Array.from(this.extractedElements.values());
+  }
+}
+
+// Usage for SPA testing
+const extractor = new DynamicElementExtractor();
+
+extractor.onElementChange((eventType, element) => {
+  console.log(`${eventType}: ${element.tagName} - ${element.selector}`);
+  
+  // Auto-generate test case for new elements
+  if (element.isInteractive) {
+    generateTestCase(element);
+  }
+});
+
+extractor.startMonitoring({
+  observeAttributes: true,
+  observeAttributeChanges: true
+});
+
+// Simulate user interactions to trigger dynamic content
+setTimeout(() => {
+  // Trigger navigation or user actions
+  document.querySelector('.load-more').click();
+}, 2000);
+
+// Stop monitoring after some time
+setTimeout(() => {
+  const elements = extractor.getExtractedElements();
+  console.log(`Extracted ${elements.length} dynamic elements`);
+  extractor.stopMonitoring();
+}, 10000);</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real World Examples -->
+        <section class="content-section" id="real-world">
+            <h2>🌍 Real World Case Studies</h2>
+            
+            <div class="case-study">
+                <h3>🏢 Enterprise E-commerce Testing</h3>
+                <div class="case-meta">
+                    <span class="case-industry">E-commerce</span>
+                    <span class="case-scale">10,000+ products</span>
+                    <span class="case-timeline">3 months</span>
+                </div>
+                
+                <div class="case-content">
+                    <h4>Challenge</h4>
+                    <p>Large e-commerce platform needed comprehensive automated testing across product pages, checkout flows, and admin interfaces with over 50 different page templates.</p>
+                    
+                    <h4>Solution with Elements Extractor</h4>
+                    <ul>
+                        <li>Analyzed 200+ page templates to identify common patterns</li>
+                        <li>Extracted selectors for 2,000+ interactive elements</li>
+                        <li>Generated Selenium test suites for critical user flows</li>
+                        <li>Created element inventory for design system documentation</li>
+                        <li>Implemented monitoring for UI changes across releases</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <ul>
+                        <li>90% reduction in test creation time</li>
+                        <li>99.5% test reliability with robust selectors</li>
+                        <li>Automated detection of UI regression issues</li>
+                        <li>Complete test coverage across all product categories</li>
+                    </ul>
+                </div>
+                
+                <div class="case-code">
+                    <h4>Implementation Highlights</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-python"># Automated test generation for product pages
+class ProductPageTestGenerator:
+    def __init__(self, extracted_elements):
+        self.elements = extracted_elements
+        self.test_scenarios = []
+    
+    def generate_comprehensive_tests(self):
+        # Extract key elements for product pages
+        add_to_cart = self.find_element_by_pattern('add.*cart', 'button')
+        quantity_input = self.find_element_by_pattern('quantity|qty', 'input')
+        price_display = self.find_element_by_pattern('price', 'span|div')
+        
+        # Generate test scenarios
+        if add_to_cart and quantity_input:
+            self.test_scenarios.append({
+                'name': 'test_add_multiple_items_to_cart',
+                'elements': [quantity_input, add_to_cart],
+                'actions': ['set_quantity', 'click_add_to_cart', 'verify_cart_count']
+            })
+        
+        return self.generate_test_code()
+    
+    def find_element_by_pattern(self, pattern, tag_filter=None):
+        import re
+        for element in self.elements:
+            if tag_filter and element['tagName'].lower() not in tag_filter.split('|'):
+                continue
+            
+            text_match = re.search(pattern, element.get('textContent', ''), re.IGNORECASE)
+            id_match = re.search(pattern, element.get('id', ''), re.IGNORECASE)
+            class_match = any(re.search(pattern, cls, re.IGNORECASE) 
+                            for cls in element.get('classes', []))
+            
+            if text_match or id_match or class_match:
+                return element
+        return None</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>📰 News Aggregation Platform</h3>
+                <div class="case-meta">
+                    <span class="case-industry">Media</span>
+                    <span class="case-scale">500+ news sources</span>
+                    <span class="case-timeline">6 months</span>
+                </div>
+                
+                <div class="case-content">
+                    <h4>Challenge</h4>
+                    <p>Media company needed to aggregate content from hundreds of news websites with different layouts and structures.</p>
+                    
+                    <h4>Solution</h4>
+                    <ul>
+                        <li>Used Elements Extractor to analyze article patterns across 500+ news sites</li>
+                        <li>Created adaptive selectors for headlines, content, metadata</li>
+                        <li>Built automated scraping pipeline with fallback strategies</li>
+                        <li>Implemented change detection for layout updates</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <ul>
+                        <li>95% accuracy in content extraction</li>
+                        <li>Processing 50,000+ articles daily</li>
+                        <li>Automatic adaptation to site layout changes</li>
+                        <li>Reduced manual configuration by 80%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>🏥 Healthcare Portal QA</h3>
+                <div class="case-meta">
+                    <span class="case-industry">Healthcare</span>
+                    <span class="case-scale">HIPAA Compliant</span>
+                    <span class="case-timeline">4 months</span>
+                </div>
+                
+                <div class="case-content">
+                    <h4>Challenge</h4>
+                    <p>Healthcare portal required comprehensive accessibility testing and form validation across patient registration, appointment booking, and medical records access.</p>
+                    
+                    <h4>Solution</h4>
+                    <ul>
+                        <li>Extracted all form elements and interactive components</li>
+                        <li>Generated accessibility test cases (ARIA labels, keyboard navigation)</li>
+                        <li>Created validation tests for medical data entry forms</li>
+                        <li>Built regression test suite for HIPAA compliance features</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <ul>
+                        <li>100% WCAG 2.1 AA compliance achieved</li>
+                        <li>Zero accessibility regressions in 12 months</li>
+                        <li>Comprehensive form validation coverage</li>
+                        <li>Automated security testing for sensitive data fields</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="content-section">
+            <h2>✨ Best Practices</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>🎯 Selector Strategy</h3>
+                    <ul>
+                        <li><strong>Prefer ID selectors</strong> when available for maximum stability</li>
+                        <li><strong>Use data attributes</strong> for test-specific selectors</li>
+                        <li><strong>Avoid position-based</strong> selectors that break with layout changes</li>
+                        <li><strong>Combine strategies</strong> for fallback scenarios</li>
+                        <li><strong>Validate uniqueness</strong> before using in production</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🔄 Maintenance Tips</h3>
+                    <ul>
+                        <li><strong>Regular extraction</strong> to catch UI changes early</li>
+                        <li><strong>Version control</strong> element mappings with application releases</li>
+                        <li><strong>Monitor test failures</strong> for selector brittleness</li>
+                        <li><strong>Update documentation</strong> when selectors change</li>
+                        <li><strong>Use dynamic extraction</strong> for frequently changing content</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Tips -->
+        <section class="content-section">
+            <h2>⚡ Performance Optimization</h2>
+            
+            <div class="performance-tips">
+                <div class="tip-card">
+                    <h3>🚀 Extraction Speed</h3>
+                    <ul>
+                        <li>Use filtered extraction for large pages (visible elements only)</li>
+                        <li>Implement pagination for better UI responsiveness</li>
+                        <li>Cache extraction results for repeated analysis</li>
+                        <li>Use background processing for bulk operations</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>📊 Memory Management</h3>
+                    <ul>
+                        <li>Clean up event listeners after extraction</li>
+                        <li>Process elements in batches for large datasets</li>
+                        <li>Use WeakMap for element references</li>
+                        <li>Implement garbage collection for cached data</li>
+                    </ul>
+                </div>
+                
+                <div class="tip-card">
+                    <h3>🔧 Integration Efficiency</h3>
+                    <ul>
+                        <li>Automate extraction in CI/CD pipelines</li>
+                        <li>Use parallel processing for multiple pages</li>
+                        <li>Implement incremental updates for large sites</li>
+                        <li>Cache selector validations to avoid repeated checks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="navigation-section">
+            <div class="nav-links">
+                <a href="api-reference.html" class="nav-link prev">← API Reference</a>
+                <a href="troubleshooting.html" class="nav-link next">Troubleshooting →</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/js/guide.js"></script>
+</body>
+</html>

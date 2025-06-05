@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Element AI Extractor 🤖👁️</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="popup-root">
+        <div class="header-row">
+            <span class="logo">🤖</span>
+            <span class="title">Element <span class="ai-gradient">AI Extractor</span> <span
+                    class="eye">👁️</span></span>
+        </div>
+        <div class="ai-tip" id="ai-tip">
+            <div class="ai-tip-sidebar"></div>
+            <div class="ai-tip-content">
+                <strong>AI Tip:</strong> Interactable (clickable) elements are best for automation.
+            </div>
+        </div>
+
+        <div class="search-row">
+            <span class="search-icon">🔍</span>
+            <input id="search" class="search-box" placeholder="Search elements..." type="text" autocomplete="off" />
+            <button id="clearSearch" class="clear-btn" title="Clear search">✕</button>
+        </div>
+
+        <div class="type-row">
+            <label class="filter-btn"><input type="checkbox" id="filterAll" checked>All Elements</label>
+            <label class="filter-btn"><input type="checkbox" id="filterLinks">Links</label>
+            <label class="filter-btn"><input type="checkbox" id="filterButtons">Buttons</label>
+            <label class="filter-btn"><input type="checkbox" id="filterInputs">Inputs</label>
+            <label class="filter-btn"><input type="checkbox" id="filterCombo">Combo</label>
+            <label class="filter-btn"><input type="checkbox" id="filterTextboxes">Textboxes</label>
+            <label class="filter-btn"><input type="checkbox" id="filterCheckboxes">Checkboxes</label>
+            <label class="filter-btn"><input type="checkbox" id="filterRadios">Radios</label>
+            <label class="filter-btn"><input type="checkbox" id="filterLists">Lists</label>
+            <label class="filter-btn"><input type="checkbox" id="filterForms">Forms</label>
+            <label class="filter-btn"><input type="checkbox" id="filterImages">Images</label>
+            <label class="filter-btn"><input type="checkbox" id="filterIframes">Iframes</label>
+            <label class="filter-btn"><input type="checkbox" id="filterCustom">Custom Elements</label>
+        </div>
+
+        <div class="toggle-row">
+            <span class="switch-label">Visible Only</span>
+            <label class="switch">
+                <input type="checkbox" id="filterVisible" checked>
+                <span class="slider"></span>
+            </label>
+            <span class="switch-label">Hidden Only</span>
+            <label class="switch">
+                <input type="checkbox" id="filterHidden">
+                <span class="slider"></span>
+            </label>
+            <span class="switch-label">Shadow DOM</span>
+            <label class="switch">
+                <input type="checkbox" id="filterShadow">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Inspector Section -->
+        <div class="inspector-section">
+            <button class="inspect-btn" id="inspectElement" title="Click to inspect elements one by one">
+                <span class="inspect-icon">🔬</span> Inspect Element
+            </button>
+            <div id="inspector-status" class="inspector-status"></div>
+        </div>
+
+        <!-- Inspected Element Details -->
+        <div id="inspected-element-details" class="inspected-element-details" style="display: none;"></div>
+
+        <div class="export-controls">
+            <select id="exportFormat" class="format-select">
+                <option value="table" selected>Table</option>
+                <option value="csv">CSV Format</option>
+                <option value="json">JSON Format</option>
+                <option value="excel">Excel Format</option>
+            </select>
+            <button class="extract-btn" id="extract">
+                <span class="rocket">🚀</span> Extract Elements
+            </button>
+        </div>
+        <div id="status" class="status-row"></div>
+        <div id="preview" class="preview-table"></div>
+        
+        <!-- Pagination Controls -->
+        <div class="pagination-controls" id="paginationControls" style="display: none;">
+            <div class="pagination-info">
+                Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+            </div>
+            <div class="pagination-buttons">
+                <button class="pagination-btn" id="prevBtn" title="Previous page">‹ Previous</button>
+                <button class="pagination-btn" id="nextBtn" title="Next page">Next ›</button>
+                <button class="pagination-btn show-all-btn" id="showAllBtn" title="Show all elements">Show All</button>
+            </div>
+        </div>
+        
+        <div class="stats-bar" id="stats">
+            <span id="elementCount">0 elements found</span>
+            <span id="visibilityStats">0 visible • 0 hidden</span>
+        </div>
+
+        <div class="quick-actions">
+            <button class="action-btn" id="selectAll" title="Select All Elements">
+                <span>🎯</span> All
+            </button>
+            <button class="action-btn" id="selectInteractive" title="Select Interactive Elements Only">
+                <span>⚡</span> Interactive
+            </button>
+            <button class="action-btn" id="clearFilters" title="Clear All Filters">
+                <span>🧹</span> Clear
+            </button>
+            <button class="action-btn" id="clearExtractions" title="Clear All Extracted Elements">
+                <span>🗑️</span> Clear List
+            </button>
+            <button class="action-btn" id="refreshExtraction" title="Refresh Extraction">
+                <span>🔄</span> Refresh
+            </button>
+        </div>
+
+        <div class="footer">
+            <span>by <span class="ai-gradient">AI Synergy Labs</span></span>
+        </div>
+    </div>
+    <script type="module" src="src/popup/popup-init.js"></script>
+
+</body>
+
+</html>

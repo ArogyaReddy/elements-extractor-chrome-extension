@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Elements Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🔍 Elements Extractor</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>🚀 Features Overview</h1>
+            <p>Comprehensive guide to all Elements Extractor capabilities and use cases</p>
+        </header>
+
+        <!-- Core Features -->
+        <section class="content-section">
+            <h2>🎯 Core Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Element Detection</h3>
+                    <p>Automatically identifies and categorizes interactive elements across any web page</p>
+                    <ul>
+                        <li>Buttons, links, inputs, forms</li>
+                        <li>Custom components and widgets</li>
+                        <li>Shadow DOM element detection</li>
+                        <li>Dynamic content recognition</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Advanced Locator Generation</h3>
+                    <p>Creates multiple types of robust element selectors for automation frameworks</p>
+                    <ul>
+                        <li>CSS selectors (ID, class, attribute)</li>
+                        <li>XPath expressions (absolute & relative)</li>
+                        <li>Data attribute selectors</li>
+                        <li>Optimized selector strategies</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Element Inspector</h3>
+                    <p>Detailed analysis and metadata extraction for each discovered element</p>
+                    <ul>
+                        <li>Element type and tag information</li>
+                        <li>Text content and value extraction</li>
+                        <li>Attribute analysis</li>
+                        <li>Visual property detection</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📤</div>
+                    <h3>Multiple Export Formats</h3>
+                    <p>Export element data in various formats for different automation tools</p>
+                    <ul>
+                        <li>CSV for spreadsheet analysis</li>
+                        <li>JSON for API integration</li>
+                        <li>Clipboard copy for quick use</li>
+                        <li>Test script templates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Element Detection Features -->
+        <section class="content-section">
+            <h2>🔍 Element Detection Capabilities</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>📋 Supported Element Types</h3>
+                    <div class="element-types">
+                        <div class="element-type">
+                            <strong>Form Elements:</strong>
+                            <span class="tags">
+                                <span class="tag">input</span>
+                                <span class="tag">button</span>
+                                <span class="tag">select</span>
+                                <span class="tag">textarea</span>
+                                <span class="tag">form</span>
+                            </span>
+                        </div>
+                        
+                        <div class="element-type">
+                            <strong>Navigation:</strong>
+                            <span class="tags">
+                                <span class="tag">a</span>
+                                <span class="tag">nav</span>
+                                <span class="tag">menu</span>
+                                <span class="tag">breadcrumb</span>
+                            </span>
+                        </div>
+                        
+                        <div class="element-type">
+                            <strong>Interactive:</strong>
+                            <span class="tags">
+                                <span class="tag">clickable</span>
+                                <span class="tag">draggable</span>
+                                <span class="tag">dropdown</span>
+                                <span class="tag">modal</span>
+                            </span>
+                        </div>
+                        
+                        <div class="element-type">
+                            <strong>Media:</strong>
+                            <span class="tags">
+                                <span class="tag">img</span>
+                                <span class="tag">video</span>
+                                <span class="tag">audio</span>
+                                <span class="tag">canvas</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🎛️ Detection Filters</h3>
+                    <ul>
+                        <li><strong>Visibility Filter:</strong> Only visible elements</li>
+                        <li><strong>Interactivity Filter:</strong> Clickable/actionable elements</li>
+                        <li><strong>Size Filter:</strong> Elements above minimum dimensions</li>
+                        <li><strong>Content Filter:</strong> Elements with meaningful content</li>
+                        <li><strong>Custom Selectors:</strong> User-defined element queries</li>
+                    </ul>
+                    
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Example: Custom detection filter
+function shouldExtractElement(element) {
+  return element.offsetWidth > 0 && 
+         element.offsetHeight > 0 &&
+         !element.hidden &&
+         (isInteractiveElement(element) ||
+          hasSignificantContent(element));
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locator Generation Features -->
+        <section class="content-section">
+            <h2>🎯 Locator Generation Features</h2>
+            
+            <div class="locator-strategies">
+                <div class="strategy-card">
+                    <h3>🆔 ID-Based Selectors</h3>
+                    <p>Most reliable when available</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-css">#submit-button
+#user-email-input
+#navigation-menu</code></pre>
+                    </div>
+                    <div class="strategy-pros">
+                        <strong>Advantages:</strong> Fast, unique, reliable
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h3>🏷️ Class-Based Selectors</h3>
+                    <p>Semantic and maintainable</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-css">.btn-primary
+.form-input
+.nav-link.active</code></pre>
+                    </div>
+                    <div class="strategy-pros">
+                        <strong>Advantages:</strong> Semantic, reusable, stable
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h3>📝 Attribute Selectors</h3>
+                    <p>Data attributes and properties</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-css">[data-testid="login-btn"]
+[name="username"]
+[placeholder="Enter email"]</code></pre>
+                    </div>
+                    <div class="strategy-pros">
+                        <strong>Advantages:</strong> Test-friendly, descriptive
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <h3>🛤️ XPath Selectors</h3>
+                    <p>Powerful traversal and text-based</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-xpath">//button[text()='Submit']
+//input[@type='email']
+//div[@class='modal']//button</code></pre>
+                    </div>
+                    <div class="strategy-pros">
+                        <strong>Advantages:</strong> Text-based, hierarchical
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inspector Features -->
+        <section class="content-section">
+            <h2>📊 Element Inspector Features</h2>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>🔍 Basic Properties</h3>
+                    <ul>
+                        <li><strong>Tag Name:</strong> Element type</li>
+                        <li><strong>Element ID:</strong> Unique identifier</li>
+                        <li><strong>Class List:</strong> Applied CSS classes</li>
+                        <li><strong>Position:</strong> X, Y coordinates</li>
+                        <li><strong>Dimensions:</strong> Width, height</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📝 Content Analysis</h3>
+                    <ul>
+                        <li><strong>Text Content:</strong> Visible text</li>
+                        <li><strong>Inner Text:</strong> Rendered text</li>
+                        <li><strong>Value:</strong> Form field values</li>
+                        <li><strong>Alt Text:</strong> Image descriptions</li>
+                        <li><strong>Title:</strong> Tooltip text</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🎨 Visual Properties</h3>
+                    <ul>
+                        <li><strong>Visibility:</strong> Display state</li>
+                        <li><strong>Colors:</strong> Background, text</li>
+                        <li><strong>Font:</strong> Family, size, weight</li>
+                        <li><strong>Border:</strong> Style, width, color</li>
+                        <li><strong>Z-Index:</strong> Stacking order</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inspector-example">
+                <h4>📋 Example Element Analysis</h4>
+                <div class="code-snippet">
+                    <pre><code class="language-json">{
+  "tagName": "BUTTON",
+  "id": "submit-btn",
+  "classes": ["btn", "btn-primary", "btn-lg"],
+  "textContent": "Submit Form",
+  "attributes": {
+    "type": "submit",
+    "data-testid": "form-submit",
+    "aria-label": "Submit the form"
+  },
+  "selectors": {
+    "css": "#submit-btn",
+    "xpath": "//button[@id='submit-btn']",
+    "dataTestid": "[data-testid='form-submit']"
+  },
+  "position": { "x": 320, "y": 450 },
+  "dimensions": { "width": 120, "height": 40 },
+  "isVisible": true,
+  "isInteractive": true
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Export Features -->
+        <section class="content-section">
+            <h2>📤 Export Features</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>📊 CSV Export</h3>
+                    <p>Structured data for analysis in spreadsheet applications</p>
+                    <ul>
+                        <li>All element properties in columns</li>
+                        <li>Sortable and filterable data</li>
+                        <li>Compatible with Excel, Google Sheets</li>
+                        <li>Bulk element analysis</li>
+                    </ul>
+                    <div class="export-example">
+                        <strong>Sample CSV Structure:</strong>
+                        <code>TagName,ID,Classes,TextContent,CSSSelector,XPath</code>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔧 JSON Export</h3>
+                    <p>Machine-readable format for automation tools and APIs</p>
+                    <ul>
+                        <li>Complete element metadata</li>
+                        <li>Nested attribute structures</li>
+                        <li>API integration ready</li>
+                        <li>Test framework compatible</li>
+                    </ul>
+                    <div class="export-example">
+                        <strong>Integration Examples:</strong>
+                        <code>Selenium, Playwright, Cypress, Puppeteer</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features -->
+        <section class="content-section">
+            <h2>🔬 Advanced Features</h2>
+            
+            <div class="advanced-features">
+                <div class="advanced-feature">
+                    <h3>🌊 Shadow DOM Support</h3>
+                    <p>Penetrates Shadow DOM boundaries to extract encapsulated elements from web components and modern frameworks.</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Shadow DOM traversal
+function extractFromShadowRoot(element) {
+  if (element.shadowRoot) {
+    const shadowElements = element.shadowRoot.querySelectorAll('*');
+    return Array.from(shadowElements).map(analyzeElement);
+  }
+  return [];
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="advanced-feature">
+                    <h3>🖼️ Iframe Analysis</h3>
+                    <p>Crosses iframe boundaries to analyze embedded content and nested documents.</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Iframe content extraction
+function extractFromIframes() {
+  const iframes = document.querySelectorAll('iframe');
+  iframes.forEach(iframe => {
+    try {
+      const iframeDoc = iframe.contentDocument;
+      if (iframeDoc) {
+        extractElementsFromDocument(iframeDoc);
+      }
+    } catch (e) {
+      console.log('Cross-origin iframe detected');
+    }
+  });
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="advanced-feature">
+                    <h3>⚡ Dynamic Content Detection</h3>
+                    <p>Waits for and detects dynamically loaded content using mutation observers.</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Dynamic content monitoring
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    if (mutation.type === 'childList') {
+      mutation.addedNodes.forEach(node => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          analyzeNewElement(node);
+        }
+      });
+    }
+  });
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="advanced-feature">
+                    <h3>🎯 Smart Filtering</h3>
+                    <p>Intelligent element filtering based on visibility, interactivity, and significance.</p>
+                    <div class="filter-options">
+                        <span class="filter-badge">Visible Only</span>
+                        <span class="filter-badge">Interactive Elements</span>
+                        <span class="filter-badge">Minimum Size</span>
+                        <span class="filter-badge">Has Content</span>
+                        <span class="filter-badge">Custom Queries</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Features -->
+        <section class="content-section">
+            <h2>⚡ Performance Features</h2>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>🚀 Optimization Features</h3>
+                    <ul>
+                        <li><strong>Lazy Loading:</strong> Scripts loaded on demand</li>
+                        <li><strong>Efficient Queries:</strong> Optimized DOM traversal</li>
+                        <li><strong>Memory Management:</strong> Automatic cleanup</li>
+                        <li><strong>Pagination:</strong> Large result set handling</li>
+                        <li><strong>Real-time Search:</strong> Instant filtering</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Performance Metrics</h3>
+                    <ul>
+                        <li><strong>Extraction Speed:</strong> ~500ms typical pages</li>
+                        <li><strong>Memory Usage:</strong> <5MB for complex pages</li>
+                        <li><strong>UI Response:</strong> 60fps interactions</li>
+                        <li><strong>Element Limit:</strong> 1000+ elements supported</li>
+                        <li><strong>Export Speed:</strong> Instant clipboard copy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="content-section">
+            <h2>🎯 Common Use Cases</h2>
+            
+            <div class="use-cases">
+                <div class="use-case">
+                    <h3>🧪 Test Automation</h3>
+                    <p>Generate selectors for automated testing frameworks</p>
+                    <ul>
+                        <li>Selenium WebDriver test scripts</li>
+                        <li>Playwright automation</li>
+                        <li>Cypress E2E testing</li>
+                        <li>Puppeteer browser automation</li>
+                    </ul>
+                </div>
+
+                <div class="use-case">
+                    <h3>🕷️ Web Scraping</h3>
+                    <p>Identify elements for data extraction scripts</p>
+                    <ul>
+                        <li>Data collection automation</li>
+                        <li>Content monitoring</li>
+                        <li>Price tracking</li>
+                        <li>News aggregation</li>
+                    </ul>
+                </div>
+
+                <div class="use-case">
+                    <h3>🔍 QA Analysis</h3>
+                    <p>Quality assurance and accessibility testing</p>
+                    <ul>
+                        <li>Element accessibility audit</li>
+                        <li>Form validation testing</li>
+                        <li>UI component inventory</li>
+                        <li>Cross-browser compatibility</li>
+                    </ul>
+                </div>
+
+                <div class="use-case">
+                    <h3>📋 Documentation</h3>
+                    <p>Create technical documentation and specifications</p>
+                    <ul>
+                        <li>UI component catalogs</li>
+                        <li>Element inventories</li>
+                        <li>Testing documentation</li>
+                        <li>Integration guides</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="navigation-section">
+            <div class="nav-links">
+                <a href="architecture.html" class="nav-link prev">← Architecture</a>
+                <a href="api-reference.html" class="nav-link next">API Reference →</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/js/guide.js"></script>
+</body>
+</html>

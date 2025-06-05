@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - Elements Extractor Guide</title>
+    <link rel="stylesheet" href="assets/css/guide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🔍 Elements Extractor</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="api-reference.html">API Reference</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="troubleshooting.html" class="active">Troubleshooting</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>🔧 Troubleshooting Guide</h1>
+            <p>Common issues, debugging tips, and performance optimization for Elements Extractor</p>
+        </header>
+
+        <!-- Quick Problem Finder -->
+        <section class="content-section">
+            <h2>🎯 Quick Problem Finder</h2>
+            <div class="problem-finder">
+                <div class="problem-category">
+                    <h3>🚨 Extension Issues</h3>
+                    <ul>
+                        <li><a href="#extension-not-loading">Extension not loading</a></li>
+                        <li><a href="#popup-not-opening">Popup not opening</a></li>
+                        <li><a href="#permission-errors">Permission errors</a></li>
+                        <li><a href="#installation-problems">Installation problems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="problem-category">
+                    <h3>🔍 Extraction Issues</h3>
+                    <ul>
+                        <li><a href="#no-elements-found">No elements found</a></li>
+                        <li><a href="#missing-elements">Missing elements</a></li>
+                        <li><a href="#incorrect-selectors">Incorrect selectors</a></li>
+                        <li><a href="#slow-extraction">Slow extraction</a></li>
+                    </ul>
+                </div>
+                
+                <div class="problem-category">
+                    <h3>🌐 Website Issues</h3>
+                    <ul>
+                        <li><a href="#blocked-sites">Blocked sites</a></li>
+                        <li><a href="#dynamic-content">Dynamic content</a></li>
+                        <li><a href="#shadow-dom-issues">Shadow DOM issues</a></li>
+                        <li><a href="#iframe-problems">Iframe problems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="problem-category">
+                    <h3>⚡ Performance Issues</h3>
+                    <ul>
+                        <li><a href="#memory-usage">High memory usage</a></li>
+                        <li><a href="#browser-freezing">Browser freezing</a></li>
+                        <li><a href="#export-failures">Export failures</a></li>
+                        <li><a href="#ui-responsiveness">UI responsiveness</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extension Issues -->
+        <section class="content-section">
+            <h2>🚨 Extension Issues</h2>
+            
+            <div class="troubleshoot-item" id="extension-not-loading">
+                <h3>🔧 Extension Not Loading</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Extension icon doesn't appear, or appears grayed out</p>
+                </div>
+                
+                <div class="solution-steps">
+                    <h4>Solutions</h4>
+                    <ol>
+                        <li><strong>Check Chrome version:</strong> Ensure you're running Chrome 88+ (Manifest V3 requirement)</li>
+                        <li><strong>Verify installation:</strong> Go to <code>chrome://extensions/</code> and check if Elements Extractor is listed and enabled</li>
+                        <li><strong>Reload extension:</strong> Click the refresh button on the extension card</li>
+                        <li><strong>Check for errors:</strong> Look for error messages in the extension details</li>
+                        <li><strong>Reinstall:</strong> Remove and reinstall the extension</li>
+                    </ol>
+                </div>
+                
+                <div class="diagnostic-code">
+                    <h4>Diagnostic Steps</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Check extension status in console
+chrome.management.getAll((extensions) => {
+  const elementsExtractor = extensions.find(ext => 
+    ext.name.includes('Elements Extractor')
+  );
+  
+  if (elementsExtractor) {
+    console.log('Extension status:', elementsExtractor.enabled);
+    console.log('Extension ID:', elementsExtractor.id);
+  } else {
+    console.log('Extension not found');
+  }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="popup-not-opening">
+                <h3>🪟 Popup Not Opening</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Clicking the extension icon does nothing or shows blank popup</p>
+                </div>
+                
+                <div class="solution-steps">
+                    <h4>Solutions</h4>
+                    <ol>
+                        <li><strong>Check active tab:</strong> Ensure you're on a valid webpage (not chrome:// pages)</li>
+                        <li><strong>Refresh the page:</strong> Some sites may block extension scripts</li>
+                        <li><strong>Clear extension cache:</strong> Disable and re-enable the extension</li>
+                        <li><strong>Check console errors:</strong> Right-click popup → Inspect → Console tab</li>
+                        <li><strong>Verify permissions:</strong> Check if site permissions are granted</li>
+                    </ol>
+                </div>
+                
+                <div class="code-snippet">
+                    <pre><code class="language-javascript">// Debug popup issues in extension console
+console.log('Popup loading...');
+console.log('Current URL:', window.location.href);
+console.log('Document ready state:', document.readyState);
+
+// Check for script errors
+window.addEventListener('error', (e) => {
+  console.error('Popup error:', e.error);
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="permission-errors">
+                <h3>🛡️ Permission Errors</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> "Cannot access this page" or script injection failures</p>
+                </div>
+                
+                <div class="solution-steps">
+                    <h4>Solutions</h4>
+                    <ol>
+                        <li><strong>Check site permissions:</strong> Some sites (chrome://, file://) are restricted</li>
+                        <li><strong>Enable on all sites:</strong> Go to extension details → Site access → "On all sites"</li>
+                        <li><strong>Manual permissions:</strong> Click extension icon → "Allow on this site"</li>
+                        <li><strong>Incognito mode:</strong> Enable "Allow in incognito" if needed</li>
+                        <li><strong>Corporate policies:</strong> Check if organization restricts extensions</li>
+                    </ol>
+                </div>
+                
+                <div class="restricted-sites">
+                    <h4>Restricted Sites</h4>
+                    <ul>
+                        <li><code>chrome://</code> and <code>chrome-extension://</code> pages</li>
+                        <li><code>file://</code> local files (unless enabled)</li>
+                        <li>Chrome Web Store pages</li>
+                        <li>Some banking and security-sensitive websites</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extraction Issues -->
+        <section class="content-section">
+            <h2>🔍 Extraction Issues</h2>
+            
+            <div class="troubleshoot-item" id="no-elements-found">
+                <h3>🚫 No Elements Found</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Extraction completes but returns 0 elements</p>
+                </div>
+                
+                <div class="solution-steps">
+                    <h4>Possible Causes & Solutions</h4>
+                    <div class="cause-solution-grid">
+                        <div class="cause-item">
+                            <h5>🕰️ Page Not Fully Loaded</h5>
+                            <p><strong>Solution:</strong> Wait for page to fully load before extraction</p>
+                            <div class="code-snippet">
+                                <pre><code class="language-javascript">// Wait for page load
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    extractAllElements();
+  }, 2000); // Wait 2 seconds for dynamic content
+});</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="cause-item">
+                            <h5>🎭 Elements in Shadow DOM</h5>
+                            <p><strong>Solution:</strong> Enable Shadow DOM extraction or use manual selectors</p>
+                            <div class="code-snippet">
+                                <pre><code class="language-javascript">// Manual shadow DOM extraction
+function extractFromAllShadowRoots() {
+  const hosts = document.querySelectorAll('*');
+  hosts.forEach(host => {
+    if (host.shadowRoot) {
+      const shadowElements = host.shadowRoot.querySelectorAll('*');
+      // Process shadow elements
+    }
+  });
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="cause-item">
+                            <h5>🔒 Content in Iframes</h5>
+                            <p><strong>Solution:</strong> Manually extract from accessible iframes</p>
+                            <div class="code-snippet">
+                                <pre><code class="language-javascript">// Extract from iframes
+document.querySelectorAll('iframe').forEach(iframe => {
+  try {
+    const iframeDoc = iframe.contentDocument;
+    if (iframeDoc) {
+      const iframeElements = extractElementsFromDocument(iframeDoc);
+    }
+  } catch (e) {
+    console.log('Cross-origin iframe:', e.message);
+  }
+});</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="cause-item">
+                            <h5>📱 Mobile/Responsive Layout</h5>
+                            <p><strong>Solution:</strong> Check if elements are hidden on current viewport</p>
+                            <div class="code-snippet">
+                                <pre><code class="language-javascript">// Check for hidden elements
+function isElementActuallyVisible(element) {
+  const rect = element.getBoundingClientRect();
+  const style = window.getComputedStyle(element);
+  
+  return rect.width > 0 && 
+         rect.height > 0 && 
+         style.display !== 'none' && 
+         style.visibility !== 'hidden' &&
+         style.opacity > 0;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="missing-elements">
+                <h3>🔍 Missing Specific Elements</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Some elements are extracted but specific ones are missing</p>
+                </div>
+                
+                <div class="debugging-checklist">
+                    <h4>Debugging Checklist</h4>
+                    <div class="checklist">
+                        <label><input type="checkbox"> Element is visible and has dimensions</label>
+                        <label><input type="checkbox"> Element is not inside Shadow DOM</label>
+                        <label><input type="checkbox"> Element is not dynamically loaded after extraction</label>
+                        <label><input type="checkbox"> Element meets minimum size requirements</label>
+                        <label><input type="checkbox"> Element is not filtered out by extraction logic</label>
+                        <label><input type="checkbox"> Element is not inside restricted iframe</label>
+                    </div>
+                </div>
+                
+                <div class="manual-extraction">
+                    <h4>Manual Element Check</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Manual element verification
+function debugElementExtraction(selector) {
+  const element = document.querySelector(selector);
+  
+  if (!element) {
+    console.log('❌ Element not found:', selector);
+    return;
+  }
+  
+  console.log('✅ Element found:', element);
+  console.log('📊 Properties:', {
+    tagName: element.tagName,
+    visible: element.offsetWidth > 0 && element.offsetHeight > 0,
+    display: getComputedStyle(element).display,
+    visibility: getComputedStyle(element).visibility,
+    opacity: getComputedStyle(element).opacity,
+    inShadowDOM: element.getRootNode() !== document,
+    interactive: isInteractiveElement(element)
+  });
+  
+  console.log('🎯 Would extract:', shouldExtractElement(element));
+}
+
+// Usage
+debugElementExtraction('#missing-button');</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="incorrect-selectors">
+                <h3>🎯 Incorrect or Unstable Selectors</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Generated selectors don't work or break frequently</p>
+                </div>
+                
+                <div class="selector-validation">
+                    <h4>Selector Validation Tools</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Validate selector reliability
+function validateSelector(selector, expectedElement) {
+  try {
+    const foundElements = document.querySelectorAll(selector);
+    
+    if (foundElements.length === 0) {
+      return { valid: false, reason: 'No elements found' };
+    }
+    
+    if (foundElements.length > 1) {
+      return { valid: false, reason: 'Selector not unique', count: foundElements.length };
+    }
+    
+    if (foundElements[0] !== expectedElement) {
+      return { valid: false, reason: 'Wrong element selected' };
+    }
+    
+    return { valid: true, element: foundElements[0] };
+    
+  } catch (error) {
+    return { valid: false, reason: 'Invalid selector syntax', error };
+  }
+}
+
+// Test different selector strategies
+function findBestSelector(element) {
+  const strategies = [
+    () => element.id ? `#${element.id}` : null,
+    () => element.getAttribute('data-testid') ? `[data-testid="${element.getAttribute('data-testid')}"]` : null,
+    () => element.className ? `.${element.className.split(' ').join('.')}` : null,
+    () => generateHierarchicalSelector(element)
+  ];
+  
+  for (const strategy of strategies) {
+    const selector = strategy();
+    if (selector) {
+      const validation = validateSelector(selector, element);
+      if (validation.valid) {
+        return { selector, strategy: strategy.name };
+      }
+    }
+  }
+  
+  return null;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="selector-best-practices">
+                    <h4>Selector Best Practices</h4>
+                    <ul>
+                        <li><strong>Avoid position-based selectors:</strong> <code>div:nth-child(3)</code> breaks with layout changes</li>
+                        <li><strong>Prefer semantic attributes:</strong> <code>[data-testid="submit-btn"]</code> over <code>.btn-primary</code></li>
+                        <li><strong>Use stable identifiers:</strong> IDs and data attributes are more reliable than classes</li>
+                        <li><strong>Test across page states:</strong> Ensure selectors work in different UI states</li>
+                        <li><strong>Validate uniqueness:</strong> Make sure selector returns only one element</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website Compatibility Issues -->
+        <section class="content-section">
+            <h2>🌐 Website Compatibility Issues</h2>
+            
+            <div class="troubleshoot-item" id="blocked-sites">
+                <h3>🚫 Blocked or Restricted Sites</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Extension fails to work on certain websites</p>
+                </div>
+                
+                <div class="blocked-sites-info">
+                    <h4>Sites That May Block Extensions</h4>
+                    <ul>
+                        <li><strong>Banking websites:</strong> Enhanced security policies</li>
+                        <li><strong>Government sites:</strong> Content Security Policy restrictions</li>
+                        <li><strong>Corporate intranets:</strong> Organization security policies</li>
+                        <li><strong>Financial services:</strong> Fraud prevention measures</li>
+                        <li><strong>Healthcare portals:</strong> HIPAA compliance requirements</li>
+                    </ul>
+                </div>
+                
+                <div class="workarounds">
+                    <h4>Workarounds</h4>
+                    <ol>
+                        <li><strong>Request site permissions:</strong> Manually grant site access</li>
+                        <li><strong>Use developer tools:</strong> Manual element inspection</li>
+                        <li><strong>Local testing:</strong> Test on staging/development environments</li>
+                        <li><strong>Alternative approach:</strong> Use browser automation tools directly</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="dynamic-content">
+                <h3>🔄 Dynamic Content Loading</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Elements appear after extraction or change frequently</p>
+                </div>
+                
+                <div class="dynamic-content-solutions">
+                    <h4>Solutions for Dynamic Content</h4>
+                    
+                    <div class="solution-approach">
+                        <h5>1. Wait for Content Loading</h5>
+                        <div class="code-snippet">
+                            <pre><code class="language-javascript">// Wait for specific elements to appear
+function waitForElement(selector, timeout = 10000) {
+  return new Promise((resolve, reject) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      resolve(element);
+      return;
+    }
+    
+    const observer = new MutationObserver(() => {
+      const element = document.querySelector(selector);
+      if (element) {
+        observer.disconnect();
+        resolve(element);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    
+    setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`Element ${selector} not found within ${timeout}ms`));
+    }, timeout);
+  });
+}
+
+// Usage
+waitForElement('.dynamic-content').then(element => {
+  extractAllElements();
+});</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-approach">
+                        <h5>2. Monitor Content Changes</h5>
+                        <div class="code-snippet">
+                            <pre><code class="language-javascript">// Monitor for new elements
+function monitorDynamicContent() {
+  const extractedElements = new Set();
+  
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          if (shouldExtractElement(node)) {
+            const elementId = generateElementId(node);
+            if (!extractedElements.has(elementId)) {
+              extractedElements.add(elementId);
+              console.log('New element detected:', analyzeElement(node));
+            }
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
+  return observer;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="shadow-dom-issues">
+                <h3>🌊 Shadow DOM Access Issues</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Elements inside web components are not extracted</p>
+                </div>
+                
+                <div class="shadow-dom-debugging">
+                    <h4>Shadow DOM Debugging</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Debug shadow DOM elements
+function debugShadowDOM() {
+  const shadowHosts = [];
+  
+  document.querySelectorAll('*').forEach(element => {
+    if (element.shadowRoot) {
+      shadowHosts.push({
+        host: element,
+        tagName: element.tagName,
+        shadowElements: element.shadowRoot.querySelectorAll('*').length
+      });
+    }
+  });
+  
+  console.log('Shadow DOM hosts found:', shadowHosts);
+  
+  // Check if shadow roots are open or closed
+  shadowHosts.forEach(host => {
+    try {
+      const shadowElements = host.host.shadowRoot.querySelectorAll('*');
+      console.log(`${host.tagName} shadow root is open, ${shadowElements.length} elements`);
+    } catch (e) {
+      console.log(`${host.tagName} shadow root is closed or inaccessible`);
+    }
+  });
+}
+
+// Manual shadow DOM extraction
+function extractFromAllShadowRoots() {
+  const allElements = [];
+  
+  function traverseNode(node) {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      if (shouldExtractElement(node)) {
+        allElements.push(analyzeElement(node));
+      }
+      
+      // Check for shadow root
+      if (node.shadowRoot) {
+        node.shadowRoot.querySelectorAll('*').forEach(traverseNode);
+      }
+      
+      // Check child nodes
+      node.childNodes.forEach(traverseNode);
+    }
+  }
+  
+  traverseNode(document.body);
+  return allElements;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Issues -->
+        <section class="content-section">
+            <h2>⚡ Performance Issues</h2>
+            
+            <div class="troubleshoot-item" id="memory-usage">
+                <h3>🧠 High Memory Usage</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Browser becomes slow or crashes during extraction</p>
+                </div>
+                
+                <div class="memory-optimization">
+                    <h4>Memory Optimization Techniques</h4>
+                    
+                    <div class="optimization-technique">
+                        <h5>1. Batch Processing</h5>
+                        <div class="code-snippet">
+                            <pre><code class="language-javascript">// Process elements in batches
+function extractElementsInBatches(batchSize = 100) {
+  const allElements = document.querySelectorAll('*');
+  const results = [];
+  
+  for (let i = 0; i < allElements.length; i += batchSize) {
+    const batch = Array.from(allElements).slice(i, i + batchSize);
+    
+    batch.forEach(element => {
+      if (shouldExtractElement(element)) {
+        results.push(analyzeElement(element));
+      }
+    });
+    
+    // Allow browser to breathe
+    if (i % (batchSize * 5) === 0) {
+      setTimeout(() => {}, 10);
+    }
+  }
+  
+  return results;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="optimization-technique">
+                        <h5>2. Memory Cleanup</h5>
+                        <div class="code-snippet">
+                            <pre><code class="language-javascript">// Clean up references and listeners
+function cleanupAfterExtraction() {
+  // Remove event listeners
+  if (window.elementExtractorObserver) {
+    window.elementExtractorObserver.disconnect();
+    window.elementExtractorObserver = null;
+  }
+  
+  // Clear caches
+  if (window.elementExtractorCache) {
+    window.elementExtractorCache.clear();
+    window.elementExtractorCache = null;
+  }
+  
+  // Force garbage collection (if available)
+  if (window.gc) {
+    window.gc();
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="slow-extraction">
+                <h3>🐌 Slow Extraction Performance</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> Extraction takes longer than 10 seconds</p>
+                </div>
+                
+                <div class="performance-profiling">
+                    <h4>Performance Profiling</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Profile extraction performance
+function profileExtraction() {
+  const startTime = performance.now();
+  let elementCount = 0;
+  let analysisTime = 0;
+  
+  console.log('🔍 Starting extraction profiling...');
+  
+  const allElements = document.querySelectorAll('*');
+  console.log(`📊 Total DOM elements: ${allElements.length}`);
+  
+  const results = [];
+  
+  allElements.forEach((element, index) => {
+    if (shouldExtractElement(element)) {
+      const analysisStart = performance.now();
+      const analysis = analyzeElement(element);
+      analysisTime += performance.now() - analysisStart;
+      
+      results.push(analysis);
+      elementCount++;
+    }
+    
+    // Progress logging
+    if (index % 1000 === 0) {
+      console.log(`⏳ Processed ${index}/${allElements.length} elements`);
+    }
+  });
+  
+  const totalTime = performance.now() - startTime;
+  
+  console.log('📈 Extraction Profile:');
+  console.log(`   Total time: ${totalTime.toFixed(2)}ms`);
+  console.log(`   Elements analyzed: ${elementCount}`);
+  console.log(`   Analysis time: ${analysisTime.toFixed(2)}ms`);
+  console.log(`   Average per element: ${(analysisTime / elementCount).toFixed(2)}ms`);
+  console.log(`   DOM traversal time: ${(totalTime - analysisTime).toFixed(2)}ms`);
+  
+  return results;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="performance-tips">
+                    <h4>Performance Optimization Tips</h4>
+                    <ul>
+                        <li><strong>Filter early:</strong> Apply visibility and size filters before detailed analysis</li>
+                        <li><strong>Limit scope:</strong> Extract from specific containers instead of entire document</li>
+                        <li><strong>Cache selectors:</strong> Avoid regenerating selectors for similar elements</li>
+                        <li><strong>Use efficient queries:</strong> Prefer <code>getElementById</code> over complex selectors</li>
+                        <li><strong>Pagination:</strong> Process large result sets in the UI layer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="troubleshoot-item" id="export-failures">
+                <h3>💾 Export and Download Failures</h3>
+                <div class="issue-description">
+                    <p><strong>Symptoms:</strong> CSV/JSON export doesn't work or files are corrupted</p>
+                </div>
+                
+                <div class="export-debugging">
+                    <h4>Export Debugging</h4>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Debug export issues
+function debugExport(elements) {
+  try {
+    console.log('🔍 Debugging export...');
+    console.log(`📊 Elements to export: ${elements.length}`);
+    
+    // Check data integrity
+    const invalidElements = elements.filter(el => !el.tagName || !el.selector);
+    if (invalidElements.length > 0) {
+      console.warn('⚠️ Invalid elements found:', invalidElements);
+    }
+    
+    // Test CSV generation
+    const csvData = generateCSVData(elements);
+    console.log(`📄 CSV size: ${csvData.length} characters`);
+    
+    // Test JSON generation
+    const jsonData = JSON.stringify(elements, null, 2);
+    console.log(`📋 JSON size: ${jsonData.length} characters`);
+    
+    // Check for special characters that might cause issues
+    const problematicChars = ['\n', '\r', '"', ','];
+    elements.forEach((element, index) => {
+      Object.values(element).forEach(value => {
+        if (typeof value === 'string') {
+          problematicChars.forEach(char => {
+            if (value.includes(char)) {
+              console.log(`⚠️ Element ${index} contains problematic character: ${char}`);
+            }
+          });
+        }
+      });
+    });
+    
+    return { csvData, jsonData };
+    
+  } catch (error) {
+    console.error('❌ Export error:', error);
+    return null;
+  }
+}
+
+// Safe CSV generation with proper escaping
+function generateSafeCSV(elements) {
+  const headers = ['TagName', 'ID', 'Classes', 'Text', 'CSS Selector', 'XPath'];
+  const rows = [headers];
+  
+  elements.forEach(element => {
+    const row = [
+      escapeCSVField(element.tagName || ''),
+      escapeCSVField(element.id || ''),
+      escapeCSVField((element.classes || []).join(' ')),
+      escapeCSVField(element.textContent || ''),
+      escapeCSVField(element.selector || ''),
+      escapeCSVField(element.xpath || '')
+    ];
+    rows.push(row);
+  });
+  
+  return rows.map(row => row.join(',')).join('\n');
+}
+
+function escapeCSVField(field) {
+  if (typeof field !== 'string') return '';
+  
+  // Escape quotes and wrap in quotes if contains special chars
+  if (field.includes('"') || field.includes(',') || field.includes('\n')) {
+    return '"' + field.replace(/"/g, '""') + '"';
+  }
+  
+  return field;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Messages Reference -->
+        <section class="content-section">
+            <h2>⚠️ Common Error Messages</h2>
+            
+            <div class="error-reference">
+                <div class="error-item">
+                    <h3><code>Cannot access contents of url "..."</code></h3>
+                    <p><strong>Cause:</strong> Extension doesn't have permission to access the site</p>
+                    <p><strong>Solution:</strong> Grant site permissions or check if site blocks extensions</p>
+                </div>
+                
+                <div class="error-item">
+                    <h3><code>Script injection failed</code></h3>
+                    <p><strong>Cause:</strong> Content Security Policy blocks script execution</p>
+                    <p><strong>Solution:</strong> Try on a different site or check site policies</p>
+                </div>
+                
+                <div class="error-item">
+                    <h3><code>Failed to establish connection</code></h3>
+                    <p><strong>Cause:</strong> Communication error between popup and content script</p>
+                    <p><strong>Solution:</strong> Refresh the page and try again</p>
+                </div>
+                
+                <div class="error-item">
+                    <h3><code>Maximum call stack size exceeded</code></h3>
+                    <p><strong>Cause:</strong> Infinite recursion in DOM traversal</p>
+                    <p><strong>Solution:</strong> Report bug with page URL for investigation</p>
+                </div>
+                
+                <div class="error-item">
+                    <h3><code>Out of memory</code></h3>
+                    <p><strong>Cause:</strong> Page too large or too many elements</p>
+                    <p><strong>Solution:</strong> Try extracting from specific sections or use filters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Debugging Tools -->
+        <section class="content-section">
+            <h2>🔧 Debugging Tools</h2>
+            
+            <div class="debugging-tools">
+                <div class="tool-card">
+                    <h3>🔍 Element Inspector</h3>
+                    <p>Use browser developer tools to manually inspect elements</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Open console and run:
+$0 // Currently selected element
+$($0).click() // Trigger click on selected element
+shouldExtractElement($0) // Test if element would be extracted
+analyzeElement($0) // Get full analysis of element</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>📊 Performance Monitor</h3>
+                    <p>Monitor memory and performance during extraction</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Performance monitoring
+console.time('extraction');
+const elements = extractAllElements();
+console.timeEnd('extraction');
+
+console.log('Memory usage:', performance.memory);
+console.log('Elements found:', elements.length);</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>🌊 Shadow DOM Explorer</h3>
+                    <p>Explore Shadow DOM content manually</p>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Find all shadow roots
+$$('*').filter(el => el.shadowRoot).forEach(host => {
+  console.log('Shadow host:', host);
+  console.log('Shadow content:', host.shadowRoot.innerHTML);
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Getting Help -->
+        <section class="content-section">
+            <h2>🆘 Getting Help</h2>
+            
+            <div class="help-resources">
+                <div class="help-card">
+                    <h3>📋 Before Reporting Issues</h3>
+                    <ul>
+                        <li>Check this troubleshooting guide</li>
+                        <li>Test on multiple websites</li>
+                        <li>Check browser console for errors</li>
+                        <li>Note your Chrome version and OS</li>
+                        <li>Document reproduction steps</li>
+                    </ul>
+                </div>
+                
+                <div class="help-card">
+                    <h3>📊 Information to Include</h3>
+                    <ul>
+                        <li><strong>Chrome version:</strong> <code>chrome://version/</code></li>
+                        <li><strong>Extension version:</strong> Check extension details</li>
+                        <li><strong>Website URL:</strong> Where the issue occurs</li>
+                        <li><strong>Error messages:</strong> From console or popup</li>
+                        <li><strong>Screenshots:</strong> Show the problem visually</li>
+                    </ul>
+                </div>
+                
+                <div class="help-card">
+                    <h3>🔧 Diagnostic Script</h3>
+                    <div class="code-snippet">
+                        <pre><code class="language-javascript">// Run this in console to gather diagnostic info
+function generateDiagnosticReport() {
+  const report = {
+    timestamp: new Date().toISOString(),
+    url: window.location.href,
+    userAgent: navigator.userAgent,
+    viewport: {
+      width: window.innerWidth,
+      height: window.innerHeight
+    },
+    domStats: {
+      totalElements: document.querySelectorAll('*').length,
+      shadowHosts: document.querySelectorAll('*').filter(el => el.shadowRoot).length,
+      iframes: document.querySelectorAll('iframe').length
+    },
+    extensionStatus: typeof extractAllElements === 'function',
+    errors: []
+  };
+  
+  try {
+    const testExtraction = extractAllElements();
+    report.extractionTest = {
+      success: true,
+      elementCount: testExtraction.length
+    };
+  } catch (error) {
+    report.extractionTest = {
+      success: false,
+      error: error.message
+    };
+  }
+  
+  console.log('Diagnostic Report:', JSON.stringify(report, null, 2));
+  return report;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="content-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <div class="faq-items">
+                <div class="faq-item">
+                    <h3>Why doesn't the extension work on some websites?</h3>
+                    <p>Some websites block extensions for security reasons, including banking sites, government pages, and sites with strict Content Security Policies. Chrome also restricts extensions on its own pages (chrome://).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I extract elements from password-protected pages?</h3>
+                    <p>Yes, as long as you're logged in and the page is loaded in your browser. The extension works on any page you can see, regardless of authentication.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How do I handle dynamic content that loads after the page?</h3>
+                    <p>Wait for the content to fully load before running extraction, or use the dynamic monitoring features to detect new elements as they appear.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Why are my selectors breaking when the site updates?</h3>
+                    <p>Prefer stable identifiers like IDs and data attributes over CSS classes or position-based selectors. Regularly update your selectors when sites change their markup.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I extract from mobile versions of websites?</h3>
+                    <p>Yes, but mobile layouts may hide different elements. Use responsive design mode in Chrome DevTools to test mobile layouts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="navigation-section">
+            <div class="nav-links">
+                <a href="examples.html" class="nav-link prev">← Examples</a>
+                <a href="index.html" class="nav-link next">Back to Home →</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="assets/js/guide.js"></script>
+</body>
+</html>
